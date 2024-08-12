@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board | Join</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./javascript/loadData.js"></script>
+    <script src="./javascript/boardRender.js"></script>
+    <script src="./javascript/boardManagement.js"></script>
+    <script src="./javascript/boardCheck.js"></script>
+    <script src="./templates/boardTemplate.js"></script>
+    <script src="./templates/addTaskTemplate.js"></script>
+    <script src="./javascript/addTaskRender.js"></script>
+    <script src="./javascript/addTaskManagement-1.js"></script>
+    <script src="./javascript/addTaskManagement-2.js"></script>
+    <script src="./javascript/contactsManagement.js"></script>
+    <script src="./javascript/script.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/global/join_logo_black.svg" />
+  </head>
+  <body onload="initBoard() " class="bodyBoard">
+    <div w3-include-html="sidebar.html"></div>
+    <div w3-include-html="topbar.html"></div>
+
+    <div class="board-wrapper-all">
+      <div class="container boardWidth">
+        <section class="addTaskPopupWrapper d-none" id="addTaskPopupWrapper">
+          <div class="closePopupBoard"></div>
+          <div class="addTaskPopupContainer" id="dropdownClose">
+            <div id="addTaskPopup" class="add-task-popup d-none">
+              <div onclick="closeAddTaskPopup()" class="add-task-popup-close">
+                <img src="assets/img/icons/close.svg" alt="" />
+              </div>
+              <div id="boardAddTask"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="row space-between mobileBoardHeadSection">
+          <div class="headerBoardMobile">
+            <h1>Board</h1>
+            <button class="buttonGreyBoard" onclick="openAddTaskPopup('toDo')">
+              <span class="add-class"><img src="assets/img/board/plusButton.svg" alt="" /></span>
+            </button>
+          </div>
+          <div class="search-side">
+            <div class="inputFieldBox">
+              <input
+                type="text"
+                class="search-side-bar"
+                placeholder="Find Task"
+                id="searchTasks"
+                minlength="5"
+                required=""
+                onkeyup="filterTasks()"
+              />
+              <div class="search-side-bar-vertical-line"></div>
+              <img src="assets/img/board/search.svg" alt="" class="search-side-input-img" />
+            </div>
+
+            <button class="buttonGrey buttonLogin mobileButtonHide" onclick="openAddTaskPopup('toDo')">
+              Add Task
+              <span class="add-class"><img src="assets/img/board/plusButton.svg" alt="" /></span>
+            </button>
+          </div>
+        </div>
+        <div class="row boardBoxesForTasksMobile heightContainerMax">
+          <div class="col-4 overflowYActive">
+            <div class="board-title">
+              To do
+              <div onclick="openAddTaskPopup('toDo')" class="board-svg-container"></div>
+            </div>
+            <div
+              class="board drag-area"
+              id="toDo"
+              ondrop="moveTo('toDo')"
+              ondragover="allowDrop(event)"
+              ondragenter="highlight('toDo')"
+              ondragleave="removeHighlight('toDo', event)"
+            ></div>
+          </div>
+          <div class="col-4 overflowYActive">
+            <div class="board-title">
+              In progress
+              <div onclick="openAddTaskPopup('inProgress')" class="board-svg-container"></div>
+            </div>
+            <div
+              class="board drag-area"
+              id="inProgress"
+              ondrop="moveTo('inProgress')"
+              ondragover="allowDrop(event)"
+              ondragenter="highlight('inProgress')"
+              ondragleave="removeHighlight('inProgress', event)"
+            ></div>
+          </div>
+          <div class="col-4 overflowYActive">
+            <div class="board-title">
+              Await feedback
+              <div onclick="openAddTaskPopup('awaitFeedback')" class="board-svg-container"></div>
+            </div>
+            <div
+              class="board drag-area"
+              id="awaitFeedback"
+              ondrop="moveTo('awaitFeedback')"
+              ondragover="allowDrop(event)"
+              ondragenter="highlight('awaitFeedback')"
+              ondragleave="removeHighlight('awaitFeedback', event)"
+            ></div>
+          </div>
+          <div class="col-4 overflowYActive">
+            <div class="board-title">
+              Done
+              <div onclick="openAddTaskPopup('done')" class="board-svg-container"></div>
+            </div>
+            <div
+              class="board drag-area"
+              id="done"
+              ondrop="moveTo('done')"
+              ondragover="allowDrop(event)"
+              ondragenter="highlight('done')"
+              ondragleave="removeHighlight('done', event)"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div id="aTPopupBg" class="aTPopupBg d-none">
+        <div class="aTPopupWrapper d-none" id="aTPopupWrapper"> </div>
+      </div>
+    </div>
+  </body>
+</html>

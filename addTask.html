@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task | Join</title>
+    <link rel="stylesheet" href="./css/style.css?version=2.1" />
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/loadData.js"></script>
+    <script src="./javascript/addTaskRender.js"></script>
+    <script src="./javascript/addTaskManagement-1.js"></script>
+    <script src="./javascript/addTaskManagement-2.js"></script>
+    <script src="./templates/addTaskTemplate.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/global/join_logo_black.svg" />
+  </head>
+  <body class="body-add-task" onload="init()">
+    <div w3-include-html="topbar.html"></div>
+
+    <main class="main-add-task" id="main"></main>
+    <div class="addTaskToBoardPopUp d-none" id="addedTaskToBoard">
+      <p class="p-whiteText">Task Added to board</p>
+      <img class="addTaskToBoardImg" src="assets/img/icons/board_white_popup.svg" />
+    </div>
+    <div w3-include-html="sidebar.html"></div>
+  </body>
+</html>

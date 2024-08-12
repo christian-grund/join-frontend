@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Topbar</title>
+    <script src="./javascript/topbar.js"></script>
+    <script src="./javascript/contacts.js"></script>
+    <script src="./javascript/script.js"></script>
+  </head>
+  <body onload="initScript()">
+
+      <section class="topbar" id="topbarSection">
+        <div class="topbar-left">
+          <p>Kanban Project Management Tool</p>
+        </div>
+        <div class="topbar-right" id="topbar-right">
+          <a href="./help.html"><img src="assets/img/icons/help.svg" alt="Help Icon" id="helpIcon" /></a>
+          <div id="topbar-user-background" onclick="showTopbarDropdown()">
+            <div id="topbar-user">
+            </div>
+          </div>
+      </section>
+
+      <div id="topbar-dropdown">
+        <div class="dropdown-content">
+          <a href="./legalNotice.html"><p>Legal Notice</p></a>
+        </div>
+        <div class="dropdown-content">
+          <a href="./privacyPolice.html"><p>Privacy Policy</p></a>
+        </div>
+        <div class="dropdown-content" id="topbar-dropdown-help">
+          <a href="./help.html"><p>Help</p></a>
+        </div>
+        <div class="dropdown-content">
+          <a href="./logIn.html"><p>Log out</p></a>
+        </div>
+      </div>
+
+      <section class="topbarMobile" style="display: none;">
+        <div class="topbarLeftMobile">
+            <a href="#">
+          <img src="assets/img/icons/logo-black.svg" alt="">
+        </a>
+        </div>
+        <div class="topbarRightMobile">
+          <div id="topbarUserBackgroundMobile">
+            <div id="topbarUserMobile" onclick="showTopbarDropdown()">
+                <p>G</p>
+            </div>
+          </div>
+      </section>
+  </body>
+</html>

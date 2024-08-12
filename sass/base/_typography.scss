@@ -1,0 +1,22 @@
+@import '../base/_colors';
+
+@font-face {
+    font-family: 'Inter', sans-serif;
+    src: url(assets/fonts/Inter.ttf);
+  }
+
+  input {
+    font-family: 'Inter', sans-serif!important;
+    font-size: 20px;
+    &::placeholder {
+      color: $color-lightgrey;
+    }
+  }
+  
+  textarea {
+    font-family: 'Inter', sans-serif!important;
+    font-size: 20px;
+    &::placeholder {
+      color: $color-lightgrey;
+    }
+  }

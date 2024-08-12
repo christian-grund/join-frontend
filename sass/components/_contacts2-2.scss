@@ -1,0 +1,597 @@
+@import '../base/_colors';
+
+// === Add Contact Mobile / Edit Contact Mobile === //
+#add-contact-wrapper-mobile,
+#edit-contact-wrapper-mobile {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.add-contact-container-mobile,
+.edit-contact-container-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.add-contact-mobile::-webkit-scrollbar {
+  display: none;
+}
+
+.edit-contact-mobile::-webkit-scrollbar {
+  display: none;
+}
+
+#add-contact-mobile,
+#edit-contact-mobile {
+  transform: translateY(1000px);
+  transition: all 250ms ease-in-out;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#contact-mobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 396px;
+  height: 760px;
+  border-radius: 30px;
+  background: $color-light;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.top-container {
+  position: relative;
+  display: flex;
+  width: calc(100% - 2 * 24px);
+  height: calc(352px - 2 * 66px);
+  padding: 66px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  background-color: $primary-color;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.form-close-mobile {
+  position: absolute;
+  right: 16px;
+  top: 24px;
+  cursor: pointer;
+}
+
+.top-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.h2-add-card-mobile {
+  font-size: 47px;
+  font-weight: 700;
+  color: $color-light;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.top-card-text p {
+  font-size: 20px;
+  color: $color-light;
+}
+
+.horizontal-line-mobile {
+  width: 85px;
+  height: 2px;
+  background-color: $secondary-color;
+}
+
+.bottom-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 408px;
+  background-color: $color-light;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.profile-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  border: 4px solid $color-light;
+  background-color: $color-lightgrey;
+  margin-top: -120px;
+}
+
+#capital-letters-edit-mobile {
+  color: $color-light;
+}
+
+.inputButtonWrapperMobile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.inputFieldContainerMobile {
+  display: flex;
+  padding: 0px 16px;
+  width: calc(396px - 2 * 16px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.inputFieldBoxMobile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: $color-light;
+  outline: none;
+  position: relative;
+  width: calc(396px - 2 * 16px);
+}
+
+.inputFieldMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  height: calc(41px - 2 * 13px);
+  padding: 13px 21px;
+  border-radius: 10px;
+  border: 1px solid $color-lightgrey;
+}
+
+.edit-contact-btns {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+// === Form === //
+.inputFieldContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  outline: none;
+}
+
+.inputField {
+  position: relative;
+  width: 380px;
+  height: 24px;
+  gap: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(209, 209, 209, 1);
+  padding: 12px 21px;
+}
+
+.inputImgPerson,
+.inputImgPersonMobile {
+  position: absolute;
+  top: 13px;
+  right: 22px;
+  width: 20px;
+  height: 20px;
+}
+
+.inputImgMail {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.inputImgMailMobile {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.inputImgPhone {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+}
+
+.inputImgPhone2Mobile {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  width: 26px;
+  height: 26px;
+}
+
+.btns-down-right {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  margin-top: 60px;
+}
+
+#cancel,
+#create-contact,
+#delete,
+#save {
+  font-size: 20px;
+}
+
+#create-contact p,
+#save p {
+  color: $color-light !important;
+  font-weight: 700;
+}
+
+.height-unset {
+  height: unset !important;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.pos-unset {
+  position: unset !important;
+}
+
+// === Media Query === //
+@media (max-width: 1250px) {
+  #add-contact,
+  #edit-contact {
+    width: calc(100% - 2 * 24px);
+    max-width: 1250px;
+  }
+
+  .left-container {
+    width: 50%;
+    padding: 66px 24px;
+  }
+
+  .wrapper-profile-and-form {
+    width: calc(100% - 2 * 24px);
+    gap: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .profile {
+    min-width: 120px;
+  }
+
+  .inputButtonsWrapper {
+    width: 100%;
+    margin-right: 16px;
+    padding-right: 16px;
+  }
+
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .inputFieldContainer {
+    width: calc(100% - 2 * 16px);
+  }
+
+  .inputFieldBox {
+    width: 100%;
+  }
+
+  .inputField {
+    width: 100%;
+  }
+
+  .inputImgPerson,
+  .inputImgLock,
+  .inputImgMail,
+  .inputImgPhone,
+  .inputImgPhone2 {
+    right: -20px !important;
+  }
+
+  .form-close {
+    width: calc(100% - 2 * 65px);
+    padding: 0px 65px;
+  }
+
+  .wrapper-contact-info {
+    align-items: flex-start;
+    padding-left: unset;
+  }
+
+  .contact-info-headline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-info-headline p {
+    font-size: 20px;
+  }
+
+  .contact-info-h1 {
+    font-size: 47px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
+  .horizontal-line-contact-info {
+    display: flex !important;
+  }
+
+  #contact-info {
+    margin-top: 32px;
+  }
+
+  #basic-info {
+    gap: 20px;
+  }
+
+  .capital-letters {
+    width: 80px;
+    height: 80px;
+  }
+
+  #capital-letters {
+    font-size: 27px;
+  }
+
+  #name {
+    font-size: 36px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  .contact-info-text {
+    height: unset;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 1000px) {
+  #btn-cancel-contact,
+  #btn-create-contact {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main {
+    display: none !important;
+  }
+
+  .topbar-left {
+    padding-left: unset !important;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 12px;
+  }
+
+  .topbar {
+    display: none !important;
+  }
+
+  .topbarMobile {
+    display: flex !important;
+  }
+
+  .menuMobile {
+    display: flex !important;
+  }
+
+  .wrapper-contact-list {
+    left: 0px;
+    display: flex;
+    bottom: 84px;
+    height: calc(100vh - 90px - 84px - 2 * 32px);
+  }
+
+  .wrapper-contact-info {
+    margin-top: calc(225px - 96px);
+    margin-left: calc(400px + 50px);
+    min-height: 1000px;
+  }
+
+  .changesMobileWrapper {
+    display: none;
+  }
+
+  .left-container {
+    width: 300px;
+  }
+
+  .h2-add-card,
+  .h2-edit-card {
+    font-size: 48px;
+  }
+
+  .left-container p {
+    font-size: 20px;
+  }
+
+  .wrapper-profile-and-form {
+    flex-direction: column;
+    margin-top: -100px;
+  }
+
+  .inputButtonsWrapper {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-right: 16px;
+  }
+
+  .btns-down-right {
+    flex-direction: row;
+    margin-top: 30px;
+  }
+
+  .profile {
+    margin-bottom: 0;
+  }
+
+  .form-close {
+    z-index: 2;
+    padding: 0px 40px;
+    width: calc(100% - 2 * 40px);
+  }
+
+  #contact-info {
+    position: unset;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper-contact-info {
+    display: none;
+    padding-left: unset;
+    margin-left: 0 !important;
+    left: 0 !important;
+    top: 0px;
+    margin-top: 50px;
+    padding-top: 164px;
+    padding: 64px 24px 0 24px;
+    width: calc(100% - 2 * 24px);
+    height: calc(100% - 164px - 64px);
+    align-items: flex-start;
+  }
+
+  .contact-info-headline {
+    margin-top: unset;
+    padding-right: 120px;
+  }
+
+  .wrapper-contact-list {
+    height: calc(100vh - 90px - 84px - 2 * 24px);
+    padding: 24px 24px;
+    width: calc(100% - 2 * 24px);
+  }
+
+  #add-contact,
+  #edit-contact {
+    display: none;
+  }
+
+  .add-new-contact {
+    display: none;
+  }
+
+  .changes {
+    display: none;
+  }
+
+  #capital-letters-list {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  #addContactMobile {
+    display: flex;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper-contact-list {
+    padding: 24px 12px;
+    width: calc(100% - 2 * 12px);
+  }
+
+  .contact-list-basic-info {
+    padding: 15px 12px;
+  }
+
+  .start-letter {
+    padding: 17px 24px;
+  }
+
+  #name {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  #add-contact-mobile,
+  #edit-contact-mobile {
+    width: calc(100% - 2 * 16px);
+  }
+
+  #contact-mobile {
+    width: calc(100% - 2 * 16px);
+    height: auto;
+  }
+
+  .inputFieldBoxMobile,
+  .inputFieldMobile {
+    width: 100%;
+  }
+
+  .inputFieldContainerMobile {
+    width: calc(100% - 2 * 16px);
+  }
+}
+
+@media (max-width: 375px) {
+  .wrapper-contact-list {
+    padding: 24px 6px;
+    width: calc(100% - 2 * 6px);
+  }
+
+  .contact-list-basic-info {
+    padding: 15px 6px;
+    gap: 20px;
+  }
+
+  .contacts-by-start-letter {
+    width: calc(100% + 2 * 24px);
+  }
+
+  .start-letter {
+    padding: 17px 18px;
+  }
+
+  .h2-add-card-mobile {
+    font-size: 40px;
+  }
+
+  .top-card-text p {
+    font-size: 18px;
+  }
+}

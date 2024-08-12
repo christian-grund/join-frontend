@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Join</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./javascript/loadData.js"></script>
+    <script src="./javascript/login.js"></script>
+    <script src="./templates/logInTemplate.js"></script>
+    <script src="./javascript/script.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/Global/join_logo_black.svg" />
+  </head>
+  <body onload="animateLogo(), init()" class="heightOverflowMobile">
+    <div id="logo-bg-animation" class="logo-bg-animation login-mobile-position">
+      <img id="logo" src="assets/img/Global/join_logo_black.svg" alt="Logo" />
+      <img id="logo-white" src="assets/img/LogIn/join_logo_white.svg" alt="Logo" />
+    </div>
+
+    <div class="logInOverlayBox">
+      <img src="./assets/img/icons/joinLogoSmall.svg" alt="JoinLogo" class="JoinLogoSmall" />
+      <div class="headerRightBox" id="headerRightBox">
+        <p>Not a Join user?</p>
+        <button class="buttonGrey" onclick="loadSignUpHtml()">Sign up</button>
+      </div>
+      <div id="formBody" class="dp-flex"> </div>
+      <div class="signedUpMassage d-none" id="signedUpMassage"
+        ><p class="p-whiteText">You Signed Up successfully</p></div
+      >
+      <div class="signedUpMassage d-none" id="acceptPrivacyPolicy"
+        ><p class="p-whiteText">You need to accept Privacy policy</p></div
+      >
+      <footer class="footerPositionMobile">
+        <a href="./privacyPolicyOffline.html" target="”_blank”" attribute class="footerLink">Privacy Policy</a>
+        <a href="./legalNoticeOffline.html" target="”_blank”" attribute class="footerLink">Legal notice</a>
+      </footer>
+    </div>
+  </body>
+</html>

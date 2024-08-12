@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Umleiten von /login.html auf die tatsächliche Datei
+RewriteRule ^logIn\.html$ /join.christian-grund.dev/logIn.html [L]

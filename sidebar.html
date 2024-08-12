@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar</title>
+    <style src="./javascript/sidebar.js"></style>
+    <script src="./javascript/script.js"></script>
+  </head>
+  <body onload="selectSidebar()">
+    <section class="main">
+      <div class="logo">
+        <img src="assets/img/icons/logo-white.svg" alt="Join Logo" />
+      </div>
+      <section class="menu" id="sideMenu">
+        <a href="./summary.html" id="id-0" onclick="selectSidebar()">
+          <div id="sidebarSummary" class="menu-category">
+            <img
+              class="category-img"
+              id="summary-img"
+              src="assets/img/icons/summary_icon_grey.svg"
+              alt="Summary Icon"
+            />
+            <p id="summary-p">Summary</p>
+          </div>
+        </a>
+        <a href="./addTask.html" id="id-1" onclick="selectSidebar()">
+          <div id="sidebarAddTask" class="menu-category">
+            <img
+              class="category-img"
+              id="addTask-img"
+              src="assets/img/icons/add_task_icon_grey.svg"
+              alt="Add Task Icon"
+            />
+            <p>Add Task</p>
+          </div>
+        </a>
+        <a href="./board.html" id="id-2">
+          <div id="sidebarBoard" class="menu-category">
+            <img class="category-img" id="board-img" src="assets/img/icons/board_icon_grey.svg" alt="Board Icon" />
+            <p>Board</p>
+          </div>
+        </a>
+        <a href="./contacts.html" id="id-3">
+          <div id="sidebarContacts" class="menu-category">
+            <img
+              class="category-img"
+              id="contacts-img"
+              src="assets/img/icons/contacts_icon_grey.svg"
+              alt="Contacts Icon"
+            />
+            <p>Contacts</p>
+          </div>
+        </a>
+      </section>
+      <section class="notes">
+        <a href="./privacyPolice.html" id="privacyPolicyLink" class="noteLink">Privacy Policy</a>
+        <a href="./legalNotice.html" id="legalNoticeLink" class="noteLink">Legal Notice</a>
+      </section>
+    </section>
+
+    <section class="menuMobile" style="display: none">
+      <a href="./summary.html">
+        <div id="bottomBarSummaryMobile" class="menuCategoryMobile">
+          <img
+            class="categoryImgMobile"
+            id="summaryImgMobile"
+            src="assets/img/icons/summary_icon_grey.svg"
+            alt="Summary Icon"
+          />
+          <p id="summaryPMobile">Summary</p>
+        </div>
+      </a>
+      <a href="./addTask.html">
+        <div id="bottomBarAddTaskMobile" class="menuCategoryMobile">
+          <img
+            class="categoryImgMobile"
+            id="addTaskImgMobile"
+            src="assets/img/icons/add_task_icon_grey.svg"
+            alt="AddTask Icon"
+          />
+          <p id="addTaskPMobile">Add Task</p>
+        </div>
+      </a>
+      <a href="./board.html">
+        <div id="bottomBarBoardMobile" class="menuCategoryMobile">
+          <img
+            class="categoryImgMobile"
+            id="boardImgMobile"
+            src="assets/img/icons/board_icon_grey.svg"
+            alt="AddTask Icon"
+          />
+          <p id="boardPMobile">Board</p>
+        </div>
+      </a>
+      <a href="./contacts.html">
+        <div id="bottomBarContactsMobile" class="menuCategoryMobile">
+          <img
+            class="categoryImgMobile"
+            id="contactsImgMobile"
+            src="assets/img/icons/contacts_icon_grey.svg"
+            alt="Contacts Icon"
+          />
+          <p id="contactsPMobile">Contacts</p>
+        </div>
+      </a>
+    </section>
+  </body>
+</html>

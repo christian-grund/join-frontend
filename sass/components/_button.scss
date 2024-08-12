@@ -1,0 +1,319 @@
+@import '../base/_colors';
+
+.showPasswordButton {
+  display: flex;
+  border: none;
+  background-color: $color-light;
+}
+
+.arrowLeftIcon {
+  position: absolute;
+  top: 64px;
+  left: 12.375%;
+  width: 32px;
+  height: 32px;
+}
+
+.arrowLeftIcon:hover {
+  cursor: pointer;
+}
+
+.arrowLeftIconPrivacyPolicy {
+  width: 21.33px;
+  height: 20.74px;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+input[type='checkbox'] + label {
+  display: inline-block;
+  padding: 0 0 0 0px;
+  background: url('../../assets/img/icons/checkInput.svg') no-repeat;
+  height: 20px;
+  width: 16px;
+  background-size: 100%;
+}
+
+input[type='checkbox']:checked + label {
+  background: url('../../assets/img/icons/checkedInput.svg') no-repeat;
+  height: 20px;
+  width: 16px;
+  display: inline-block;
+  background-size: 100%;
+}
+
+input:focus{
+  border-color: $secondary-color !important;
+  outline: none;
+}
+
+.inputFokusError:focus{
+  border-color: $error-red !important;
+  outline: none;
+}
+
+.buttonGrey {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: white;
+  background-color: $primary-color;
+  border-radius: 8px;
+  border: none;
+  gap: 10px;
+  padding: 15px 16px;
+}
+
+
+.buttonGrey {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: white;
+  background-color: $primary-color;
+  border-radius: 8px;
+  border: none;
+  gap: 10px;
+  padding: 15px 16px;
+}
+
+button:disabled {
+  background-color: $disabled-color;
+}
+
+.buttonGreyBoard {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: white;
+  background-color: $primary-color;
+  border-radius: 8px;
+  border: none;
+  gap: 10px;
+  padding: 15px 16px;
+  cursor: pointer;
+}
+
+.buttonWhite {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: rgba(42, 54, 71, 1);
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: none;
+  gap: 10px;
+  padding: 15px 16px;
+  border: 1px solid rgba(42, 54, 71, 1);
+}
+
+.buttonGrey:hover:enabled {
+  transition: 250ms;
+  background-color: rgb(14, 140, 233);
+  transform: scale(1.001);
+  box-shadow: 0 5px 2px -2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.buttonWhite:hover {
+  transition: 250ms;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+  bottom: 1px;
+  transform: scale(1.001);
+  box-shadow: 0 5px 2px -2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.buttonWhite:hover .buttonWhite-img {
+  filter: invert(65%) sepia(27%) saturate(3883%) hue-rotate(165deg) brightness(94%) contrast(88%);
+}
+
+.footerLink:hover {
+  color: $secondary-color;
+  font-weight: bold;
+}
+
+.buttonsMobile {
+  margin-top: 50px;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buttonWhiteMobile {
+  display: flex;
+  width: 104px;
+  height: 27px;
+  padding: 4px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid $primary-color;
+}
+
+.buttonWhiteMobile:hover {
+  cursor: pointer;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttonWhiteWithImgMobile {
+  display: flex;
+  width: fit-content;
+  height: 61px;
+  padding: 18px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
+  font-size: 20px;
+}
+
+.buttonWhiteWithImgMobile img {
+  width: 24px;
+  height: 24px;
+}
+
+.buttonWhiteWithImgMobile:hover {
+  cursor: pointer;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttonWhiteWithImgMobile:hover .bntImgMobile {
+  filter: invert(65%) sepia(27%) saturate(3883%) hue-rotate(165deg) brightness(94%) contrast(88%);
+}
+
+.buttonGreyMobile {
+  display: flex;
+  width: 104px;
+  height: 27px;
+  padding: 4px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: $primary-color;
+  color: $color-light;
+  border: none;
+}
+
+.buttonGreyMobile:hover {
+  cursor: pointer;
+  background: $secondary-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttonGreyWithImgMobile {
+  display: inline-flex;
+  width: fit-content;
+  height: 61px;
+  padding: 18px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: $primary-color;
+  color: $color-light;
+  font-size: 21px;
+  border: none;
+}
+
+.buttonGreyWithImgMobile img {
+  width: 24px;
+  height: 24px;
+}
+
+.buttonGreyWithImgMobile:hover {
+  cursor: pointer;
+  background: $secondary-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contactsMobile {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-left: 16px;
+  gap: 16px;
+}
+
+.buttonGreyContactsMobile {
+  display: inline-flex;
+  width: fit-content;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 46px;
+  border: 1px solid $primary-color;
+  background: $primary-color;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.btnImgAddContactMobile {
+  width: 32px;
+  height: 32px;
+}
+
+.buttonGreyContactsMobile:hover {
+  cursor: pointer;
+  background: $secondary-color;
+}
+
+/* .inputImgTrash{
+  right: 25px;
+  width: 24px;
+  height: 24px;
+} */
+
+.boardAddTaskButtonMobile{
+  padding: 24px 15px;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.buttonMenuMoveTaskMobile{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: white;
+  background-color: $primary-color;
+  border: none;
+  padding: 15px 16px;
+  border: 1px solid $color-lightgrey;
+  border-radius: 8px;
+}
+
+.buttonMenuMoveTaskMobile:hover{
+  transition: 250ms;
+  background-color: rgb(14, 140, 233);
+  transform: scale(1.001);
+  box-shadow: 0 5px 2px -2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}

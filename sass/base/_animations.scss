@@ -1,0 +1,321 @@
+@import '../base/_colors';
+
+/* Logo animation start page */
+@keyframes logoAnimationWhite {
+  0% {
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vmin;
+    height: auto;
+    opacity: 1;
+  }
+
+  20% {
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    width: 70vmin;
+    height: auto;
+    opacity: 0;
+  }
+
+  95% {
+    z-index: -2;
+    top: 80px;
+    left: 77px;
+    transform: translate(0%, 0%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+    width: 100px;
+    height: auto;
+    height: auto;
+    opacity: 0;
+  }
+}
+@keyframes logoAnimation {
+  0% {
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vmin;
+    height: auto;
+    opacity: 1;
+  }
+
+  20% {
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    width: 70vmin; 
+    height: auto;
+    opacity: 1;
+  }
+
+  95% {
+    z-index: -2;
+    top: 80px;
+    left: 77px;
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+    width: 100px;
+    height: auto;
+    height: auto;
+    opacity: 0;
+  }
+}
+
+.logo-bg-animation {
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  animation: fadeOutLogo 1.3s ease-in-out;
+}
+
+#logo {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  animation: logoAnimation 1.3s ease-in-out;
+  display: inline;
+  top: 80px;
+  left: 77px;
+}
+#logo-white {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  animation: logoAnimationWhite 1.3s ease-in-out;
+  display: inline;
+  top: 80px;
+  left: 77px;
+}
+
+@keyframes fadeOutLogo {
+  0% {
+    opacity: 1;
+     background-color: $primary-color;
+     
+  }
+  20% {
+    opacity: 1;
+    background-color: $primary-color;
+  }
+  30% {
+    opacity: 1;
+    background-color:#fff;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    background-color:#fff;
+  }
+}
+/*Task SlideIn and out*/
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(400px);
+      animation-timing-function: ease-out;
+    }
+    60% {
+      transform: translateX(-30px);
+      animation-timing-function: ease-in;
+    }
+    80% {
+      transform: translateX(10px);
+      animation-timing-function: ease-out;
+    }
+    100% {
+      transform: translateX(0px);
+      animation-timing-function: ease-in;
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes slideOut {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  20% {
+    transform: translateX(10px);
+    animation-timing-function: ease-out;
+  }
+  40% {
+    transform: translateX(-30px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(400px);
+    animation-timing-function: ease-out;
+     opacity: 0;
+  }
+}
+
+
+@media(max-width: 600px) {
+  #logo-white {
+    display: none;
+  }
+
+  .login-mobile-position {
+    position: absolute;
+    top:0;
+}
+
+  #logo {
+    width: 64px;
+    height: auto;
+    position: absolute;
+    animation: logoAnimationMobile 1.3s ease-in-out;
+    display: inline;
+    top: 38px;
+    left: 37px;
+  }
+
+  #logo-white {
+    width: 64px;
+    animation: logoAnimationWhiteMobile 1.3s ease-in-out;
+    display: inline;
+    top: 38px;
+    left: 37px;
+  }
+
+  @keyframes logoAnimationMobile {
+    0% {
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vmin;
+      height: auto;
+      opacity: 1;
+    }
+
+    20% {
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vmin;
+      height: auto;
+      opacity: 1;
+    }
+
+    95% {
+      z-index: -2;
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(0%, 0%);
+      width: 64px;
+      height: auto;
+      opacity: 0;
+
+    }
+  }
+
+  @keyframes logoAnimationWhiteMobile {
+    0% {
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vmin; 
+      height: auto;
+      opacity: 1;
+    }
+
+    20% {
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vmin; 
+      height: auto;
+      opacity: 0;
+    }
+
+    95% {
+      z-index: -2;
+      top: 38px;
+      left: 37px;
+      transform: translate(0%, 0%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translate(0%, 0%);
+      width: 64px;
+      height: auto;
+      opacity: 0;
+      top: 38px;
+      left: 37px;
+    }
+  }
+}
+/*wobble board task animation*/
+.wobble-container {
+  position: relative;
+}
+
+.wobble-element {
+  cursor: pointer;
+  background-color: #ccc;
+  top: 0%;
+  left: 0%;
+  transform: translate(0%, 0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.wobble-container:hover .wobble-element {
+  animation: wobble 0.5s ease-in-out;
+}
+
+@keyframes wobble {
+  0% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+  25% {
+    transform: translate(0%, 0%) rotate(-5deg);
+  }
+  50% {
+    transform: translate(0%, 0%) rotate(5deg);
+  }
+  75% {
+    transform: translate(0%, 0%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+}

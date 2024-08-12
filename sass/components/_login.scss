@@ -1,0 +1,414 @@
+@import '../base/_colors';
+
+/*  general section  */
+
+.dp-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fd-colum {
+  display: flex;
+  flex-direction: column;
+}
+
+.logInOverlayBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.loginScreenBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 422px;
+  padding: 48px 115px 48px 115px;
+  border-radius: 30px;
+  gap: 32px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.signUpBody {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 422px;
+  height: 534px;
+  padding: 48px 88px;
+  border-radius: 30px;
+  gap: 24px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.headerLogIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+}
+
+.headerRightBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 67px;
+  right: 122px;
+  display: flex;
+  gap: 35px;
+  width: 279px;
+  height: 49px;
+}
+
+footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 40px;
+  gap: 8px;
+  width: 246px;
+  height: 35px;
+}
+
+.footerLink {
+  text-decoration: none;
+  color: rgba(168, 168, 168, 1);
+  padding: 8px;
+}
+
+.ButtonBox {
+  gap: 35px;
+}
+
+.inputFieldLogIn {
+  width: 380px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 0;
+}
+
+.logInInputField {
+  position: relative;
+  width: 380px;
+  height: 24px;
+  gap: 8px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 21px;
+}
+
+.logInInputFieldContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  outline: none;
+  padding-bottom: 12px;
+}
+
+.inputFieldContainerSignUp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  outline: none;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.inputFieldBox {
+  position: relative;
+}
+
+.checkboxBox {
+  display: flex;
+  padding: 0px 241px 0px 39px;
+  align-items: center;
+  align-self: stretch;
+  padding-top: 28px;
+}
+
+.checkboxPrivacyPolicy {
+  padding: 0;
+  align-self: stretch;
+}
+
+.checkboxSavePassword {
+  display: inline-block;
+  height: 20px;
+  width: 16px;
+  border-radius: 3px;
+  border: 2px solid #2a3647;
+  cursor: pointer;
+}
+
+.buttonLogin {
+  padding: 24px 15px;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.h1Box {
+  height: 89px;
+  width: 315px;
+  gap: 16px;
+  position: relative;
+}
+
+.acceptPrivacyGrey {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  margin-left: 8px;
+}
+
+.privacyPolicyLink {
+  color: var(--Ligth-blue, #29abe2);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+.rememberMeFont {
+  color: #000;
+  font-size: 16px;
+}
+
+.remembermeWidth {
+  width: 142px;
+  height: 24px;
+  gap: 8px;
+}
+
+.signedUpMassage {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  height: 74px;
+  padding: 0px 25px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--Version-2-main-color, #2a3647);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  transition: transform 3s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.moveToCenter {
+  transform: translate(-50%, -480%);
+}
+
+.p-whiteText {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+/* img section   */
+
+.JoinLogoSmall {
+  position: absolute;
+  top: 80px;
+  left: 77px;
+  width: 100.03px;
+  height: 121.97px;
+}
+
+.logInInputImgMail {
+  position: absolute;
+  right: 25px;
+  width: 20px;
+  height: 16px;
+  top: 16px;
+}
+
+.logInInputImgLock {
+  position: absolute;
+  right: 25px;
+  width: 16px;
+  height: 21px;
+  top: 16px;
+}
+
+.logInInputImgLock1 {
+  position: absolute;
+  right: 25px;
+  width: 16px;
+  height: 21px;
+  top: 13px;
+}
+
+.inputImgVisibilityOff {
+  width: 21.65px;
+  height: 18.95px;
+  top: 3.23px;
+  left: 357.17px;
+  top: 95px;
+}
+
+.inputRequired {
+  border-color: $error-red;
+}
+
+.passwordDontMatch {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  color: $error-red;
+  font-size: 12px;
+  width: 100%;
+  height: 16px;
+}
+
+.passwordIsntCorrect {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  color: $error-red;
+  font-size: 12px;
+  width: 100%;
+  height: 12px;
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.paddingTopNone {
+  padding-top: 0;
+}
+
+.paddingBtm16 {
+  padding-bottom: 16px;
+}
+
+#formBody {
+  max-width: calc(100% - 32px);
+}
+
+.gap20 {
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .JoinLogoSmall {
+    width: 64px;
+    height: 78.031px;
+    top: 37px;
+    left: 38px;
+  }
+}
+
+@media (max-width: 800px) {
+  .logInInputField {
+    width: calc(100% - 58px);
+    padding: 12px 38px 12px 21px;
+  }
+  .logInInputImgMail,
+  .logInInputImgLock {
+    right: 10px;
+  }
+
+  .formBody {
+    max-width: 100% !important;
+  }
+  .loginScreenBody {
+    max-width: calc(100% - 32px);
+    padding: 32px 0px;
+  }
+
+  .headerRightBox {
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .signUpBody {
+    width: 396px;
+    padding: 32px 0px;
+  }
+
+  .checkboxPrivacyPolicy {
+    padding: 32px, 0px;
+  }
+
+  .h1Box {
+    width: 173px;
+  }
+
+  .arrowLeftIcon {
+    width: 21.33px !important;
+    height: 20.74px !important;
+  }
+
+  .ButtonBox {
+    flex-direction: column;
+    gap: 21px;
+  }
+
+  .buttonLogin {
+    width: 180px;
+  }
+  .inputFieldContainerSignUp {
+    gap: 27px;
+    width: calc(100% - 2 * 16px);
+  }
+  .InputAndRememberBox {
+    max-width: 100%;
+    width: 100%;
+  }
+  .logInInputFieldContainer {
+    width: calc(100% - 2 * 16px);
+  }
+  .passwordIsntCorrect {
+    width: 90%;
+  }
+  .blueUnderline {
+    width: 50%;
+  }
+  .checkboxBox {
+    padding: 0px 179px 0px 39px;
+  }
+  .rememberMeFont {
+    width: 142px;
+  }
+  .passwordDontMatch{
+    padding-left: 30px;
+  }
+}
+
+@media (max-height: 800px) {
+  .logInOverlayBox {
+    justify-content: start;
+    margin-top: 130px;
+    height: 100%;
+  }
+  .heightOverflowMobile {
+    overflow: auto;
+  }
+  .footerPositionMobile {
+    top: 705px;
+  }
+  .headerRightBox {
+    top: 650px;
+  }
+}

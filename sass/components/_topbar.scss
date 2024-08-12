@@ -1,0 +1,167 @@
+@import '../base/_colors';
+
+// === Topbar Desktop === //
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 20px 0px;
+  background: $color-light;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  height: 48px;
+}
+
+.topbar-left {
+  color: $color-dark;
+  font-size: 20px;
+  padding-left: 348px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 40px;
+}
+
+.topbar-right img {
+  width: 32px;
+  height: 32px;
+}
+
+.topbar-right img:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+#topbar-user {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background: $color-light;
+  border: 4px solid $color-dark;
+  border-radius: 50px;
+}
+
+#topbar-user:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#topbar-user p {
+  color: $secondary-color;
+  font-size: 20px;
+  padding: 10px;
+}
+
+// === Topbar Mobile === //
+
+.topbarMobile {
+  display: flex;
+  width: calc(100% - 2 * 16px);
+  padding: 20px 16px;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-light;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: fixed;
+}
+
+.topbarLeftMobile img {
+  width: 40px;
+  height: 40px;
+}
+
+.topbarRightMobile {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+#topbarUserMobile {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background: $color-light;
+  border: 2px solid $color-dark;
+  border-radius: 50px;
+}
+
+#topbarUserMobile p {
+  font-size: 20px;
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+#topbarUserMobile:hover {
+  cursor: pointer;
+}
+
+// === Topbar Dropdown === //
+#topbar-dropdown {
+  display: none;
+  position: fixed;
+  top: 85px;
+  right: 5px;
+  width: 160px;
+  transform: translateX(300px);
+  transition: all 225ms ease-in-out;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 20px 0px 20px 20px;
+  background: $primary-color;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+.dropdown-content {
+  display: flex;
+  width: 130px;
+  height: 46px;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+}
+
+.dropdown-content p {
+  color: $color-sidebar-text;
+  text-decoration: none;
+}
+
+.dropdown-content:hover {
+  cursor: pointer;
+  background-color: #091931;
+}
+
+.show-overlay-menu {
+  transform: translateX(0) !important;
+}
+
+.show-overlay-menu-y {
+  transform: translateY(0) !important;
+}
+
+#topbar-dropdown-help {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  #topbar-dropdown-help {
+    display: flex !important;
+  }
+}
