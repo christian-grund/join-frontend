@@ -123,7 +123,8 @@ async function addTaskValues(
     currentState: column,
   });
 
-  await setItem("tasks", JSON.stringify(tasks));
+  // await setTask("tasks", JSON.stringify(tasks));
+  await setTask("tasks", tasks);
 }
 
 /**

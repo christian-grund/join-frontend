@@ -1,5 +1,5 @@
-// const STORAGE_URL = 'https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/';
-const STORAGE_URL = 'http://localhost:8000/'
+const STORAGE_URL = 'https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/';
+const LOCALHOST_URL = 'http://localhost:8000/'
 
 let user = [];
 let users = [];
@@ -220,4 +220,14 @@ function sortContactsByAlphabet() {
  */
 async function saveContacts() {
   await setItem('contacts', JSON.stringify(contacts));
+}
+
+function saveToken(token) {
+  localStorage.setItem('authToken', token);
+}
+
+function getToken() {
+  let authToken = localStorage.getItem('authToken');
+  console.log('getToken authToken:', authToken);
+  return authToken;
 }

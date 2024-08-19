@@ -49,7 +49,8 @@ async function signUp() {
       password: passwordSignUp.value,
       checkPassword: checkPasswordSignUp.value,
     });
-    await setItem("users", JSON.stringify(users));
+    // await setItem("users", JSON.stringify(users));
+    await setUser("users", JSON.stringify(users));
 
     loadLogIn();
     showAnimation("signedUpMassage");

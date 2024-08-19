@@ -113,13 +113,15 @@ async function subTaskActive(j, i) {
   if (checkbox.checked === false) {
     checkbox.checked = true;
     tasks[i]['subtasks'][j]['isActive'] = true;
-    await setItem('tasks', JSON.stringify(tasks));
+    // await setTask('tasks', JSON.stringify(tasks));
+    await setTask("tasks", tasks);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
     tasks[i]['subtasks'][j]['isActive'] = false;
-    await setItem('tasks', JSON.stringify(tasks));
+    // await setTask('tasks', JSON.stringify(tasks));
+    await setTask("tasks", tasks);
     return;
   }
 }

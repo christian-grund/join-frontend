@@ -6,10 +6,18 @@
 async function loadData() {
   try {
     users = JSON.parse(await getItem('users'));
-    contacts = JSON.parse(await getItem('contacts'));
-    tasks = JSON.parse(await getItem('tasks'));
-  } catch (e) {
+} catch (e) {
     console.info('could not load users');
+  }
+  try {
+    contacts = JSON.parse(await getItem('contacts'));
+  } catch (error) {
+    console.info('could not load contacts');
+  }
+  try {
+    tasks = JSON.parse(await getTasks('tasks'));
+  } catch (error) {
+    console.info('could not load tasks');
   }
 }
 
@@ -29,6 +37,39 @@ async function setItem(path = '', value = {}) {
   });
 }
 
+async function setUser(path = '', value = {}) {
+  let response = await fetch(LOCALHOST_URL + path + '/', {
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(value),
+  });
+}
+
+
+async function setTask(path = '', value = {}) {
+  const token = localStorage.getItem('authToken');  // Token aus localStorage abrufen
+
+  const response = await fetch(`http://localhost:8000/${path}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`,  // Token im Authorization-Header
+    },
+    body: JSON.stringify(value),
+  });
+
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    console.error('setTask error response:', errorResponse);
+  } else {
+    console.log('setTask response:', response);
+  }
+}
+  
+  
+
 /**
  * Retrieves an item from the storage.
  * @param {string} path - The key path the item to retrieve.
@@ -38,6 +79,20 @@ async function getItem(path = '') {
   let response = await fetch(STORAGE_URL + path + '.json'); // wichtig!!
   let responseAsJson = await response.json();
 
+  return responseAsJson;
+}
+
+
+async function getTasks(path = '') {
+  // TOKEN???
+  let response = await fetch(LOCALHOST_URL + path + '/', {
+    // headers: {
+    //   'Authorization': 'Token YOUR_API_TOKEN',  // Ersetze YOUR_API_TOKEN mit deinem tatsächlichen Token
+    // },
+  });
+  let responseAsJson = await response.json();
+
+  console.log('getTasks() responseAsJson', responseAsJson)
   return responseAsJson;
 }
 

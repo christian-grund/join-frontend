@@ -3,12 +3,23 @@
   "version": "1.0.0",
   "main": "includeHTML.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+    "compile:sass": "sass sass/main.scss css/style.css -w"
   },
   "author": "Christian Grund",
   "license": "ISC",
-  "devDependencies": {
-    "node-sass": "^9.0.0"
+  "description": "Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.",
+  "repository": {
+    "type": "git",
+    "url": "join-with-my-own-backend"
   },
-  "description": ""
+  "keywords": [
+    "join",
+    "frontend",
+    "with",
+    "own",
+    "backend"
+  ],
+  "devDependencies": {
+    "sass": "^1.77.8"
+  }
 }
