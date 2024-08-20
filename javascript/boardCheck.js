@@ -113,21 +113,13 @@ async function subTaskActive(j, i) {
   if (checkbox.checked === false) {
     checkbox.checked = true;
     tasks[i]['subtasks'][j]['isActive'] = true;
-    // await setItemWithAuth('tasks', JSON.stringify(tasks));
-    // for (let i = 0; i < tasks.length; i++) {
-    //   await setItemNoAuth("tasks", tasks[i]);
-    // }
+    await setItemNoAuth("tasks", tasks[i]);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
     tasks[i]['subtasks'][j]['isActive'] = false;
-    // await setItemWithAuth('tasks', JSON.stringify(tasks));
-    // for (let i = 0; i < tasks.length; i++) {
-    //   // const task = tasks[i];
-    //   // await setItemNoAuth("tasks", task);
-    //   await setItemNoAuth("tasks", tasks[i]);
-    // }
+    await setItemNoAuth("tasks", tasks[i]);
     return;
   }
 }

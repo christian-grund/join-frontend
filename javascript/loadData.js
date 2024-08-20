@@ -100,14 +100,11 @@ async function getItem(path = '') {
 async function getItemBE(path = '') {
   try {
     let response = await fetch(`http://localhost:8000/${path}/`, {
-      // Optional: Hier kannst du Header hinzufügen, wenn nötig
     });
-
     if (!response.ok) {
       console.error('HTTP error:', response.status, response.statusText);
       return [];
     }
-
     let responseAsJson = await response.json();
     return responseAsJson;
   } catch (error) {
