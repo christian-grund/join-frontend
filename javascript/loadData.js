@@ -37,18 +37,10 @@ async function setItem(path = '', value = {}) {
   });
 }
 
-async function setUser(path = '', value = {}) {
-  let response = await fetch(LOCALHOST_URL + path + '/', {
-    method: 'POST',
-    header: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(value),
-  });
-}
 
 
-async function setTask(path = '', value = {}) {
+
+async function setItemWithAuth(path = '', value = {}) {
   const token = localStorage.getItem('authToken');  // Token aus localStorage abrufen
 
   const response = await fetch(`http://localhost:8000/${path}/`, {
@@ -59,6 +51,29 @@ async function setTask(path = '', value = {}) {
     },
     body: JSON.stringify(value),
   });
+  console.log('setItemWithAuth response:', response)
+
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    console.error('setTask error response:', errorResponse);
+  } else {
+    console.log('setTask response:', response);
+    const data = await response.json();
+    localStorage.setItem('authToken', data.token);  // Token speichern
+  }
+}
+
+async function setItemNoAuth(path = '', value = {}) {
+  console.log('value:', value);
+  console.log('Value to be sent:', JSON.stringify(value));
+  const response = await fetch(`http://localhost:8000/${path}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(value),
+  });
+  console.log('setItemNoAuth response:', response)
 
   if (!response.ok) {
     const errorResponse = await response.json();

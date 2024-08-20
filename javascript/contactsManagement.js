@@ -242,8 +242,8 @@ async function checkTasksSelectedContactNames(newSavedName) {
 
       if (selectedContact.name == nameToCompare) {
         selectedContact.name = newSavedName;
-        // await setTask('tasks', JSON.stringify(tasks));
-        await setTask("tasks", tasks);
+        // await setItemWithAuth('tasks', JSON.stringify(tasks));
+        await setItemWithAuth("tasks", tasks);
       }
     }
   }
@@ -301,8 +301,8 @@ async function deleteSelectedContact(x) {
       }
     }
   }
-  // await setTask('tasks', JSON.stringify(tasks));
-  await setTask("tasks", tasks);
+  // await setItemWithAuth('tasks', JSON.stringify(tasks));
+  await setItemWithAuth("tasks", tasks);
 }
 
 

@@ -49,8 +49,13 @@ async function signUp() {
       password: passwordSignUp.value,
       checkPassword: checkPasswordSignUp.value,
     });
+    const user = {
+      username: userName.value,
+      email: emailSignUp.value,
+      password: passwordSignUp.value,
+    };
     // await setItem("users", JSON.stringify(users));
-    await setUser("users", JSON.stringify(users));
+    await setItemNoAuth("api/signup", user);
 
     loadLogIn();
     showAnimation("signedUpMassage");
@@ -90,9 +95,16 @@ async function loadUser() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   await setItem("users", JSON.stringify(users));
+  // hier for-schleife mit user
+  for (let i = 0; i < users.length; i++) {
+    const user1 = users[i];
+    console.log('loadUser user:', user1)
+  }
+  // await setItem("users", user);
+
   if (searchForEmail(email, password)) {
     await rememberMe();
-    let user = await setUser(email);
+    await setUser(email);
     window.location.href = "./summary.html";
   }
 }
@@ -102,12 +114,13 @@ async function loadUser() {
  * Sets user data in local storage based on the provided email.
  * @param {string} email - User's email.
  */
-function setUser(email) {
+async function setUser(email) {
   for (let i = 0; i < users.length; i++) {
     if (users[i].email === email) {
       user = [];
       user.push(i);
       let userAsText = JSON.stringify(user);
+      console.log('userAsText:', userAsText)
       localStorage.setItem("user", userAsText);
     }
   }
@@ -124,9 +137,7 @@ function setUser(email) {
 function searchForEmail(email, password) {
   for (let i = 0; i < users.length; i++) {
     if (
-      users[i]["email"] === email &&
-      users[i]["password"] === password
-    ) {
+      users[i]["email"] === email && users[i]["password"] === password) {
       return true;
     }
   }
@@ -163,7 +174,7 @@ function logInGuest() {
  * Handles the 'Remember Me' functionality.
  * Stores login credentials in local storage if the checkbox is checked.
  */
-function rememberMe() {
+async function rememberMe() {
   let checkbox = document.getElementById("checkboxSavePassword");
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;

@@ -104,22 +104,25 @@ function greeting() {
  * Calculates the number of tasks in different states.
  */
 function calculateTasks() {
-  for (let i = 0; i < tasks.length; i++) {
-    let tasksCategory = tasks[i]['currentState'];
-    if (tasksCategory === 'toDo') {
-      todoTasks++;
+  if (typeof tasks !== 'undefined' && tasks.length > 0) {
+    for (let i = 0; i < tasks.length; i++) {
+      let tasksCategory = tasks[i]['currentState'];
+      if (tasksCategory === 'toDo') {
+        todoTasks++;
+      }
+      if (tasksCategory === 'done') {
+        doneTasks++;
+      }
+      if (tasksCategory === 'awaitFeedback') {
+        awaitFeedbackTasks++;
+      }
+      if (tasksCategory === 'inProgress') {
+        progressTasks++;
+      }
+      tasksInBoard++;
     }
-    if (tasksCategory === 'done') {
-      doneTasks++;
-    }
-    if (tasksCategory === 'awaitFeedback') {
-      awaitFeedbackTasks++;
-    }
-    if (tasksCategory === 'inProgress') {
-      progressTasks++;
-    }
-    tasksInBoard++;
   }
+  
 }
 
 
@@ -127,10 +130,12 @@ function calculateTasks() {
  * Counts the number of urgent tasks.
  */
 function calculateUrgenTasks() {
-  for (let i = 0; i < tasks.length; i++) {
-    let tasksPrio = tasks[i]['prio'];
-    if (tasksPrio === 'urgent') {
-      urgentTasks++;
+  if (typeof tasks !== 'undefined' && tasks.length > 0) {
+    for (let i = 0; i < tasks.length; i++) {
+      let tasksPrio = tasks[i]['prio'];
+      if (tasksPrio === 'urgent') {
+        urgentTasks++;
+      }
     }
   }
 }
@@ -144,14 +149,17 @@ function checkDeadline() {
   let today = formatDateToYYYYMMDD();
   let deadlineContainer = document.getElementById('summary-date');
 
-  for (let i = 0; i < tasks.length; i++) {
-    let deadlineDate = tasks[i]['taskDueDate'];
-    let formattedDate = formatDeadlineDate(deadlineDate);
-
-    if (deadlineDate >= today) {
-      dates.push(formattedDate);
+  if (typeof tasks !== 'undefined' && tasks.length > 0) {
+    for (let i = 0; i < tasks.length; i++) {
+      let deadlineDate = tasks[i]['taskDueDate'];
+      let formattedDate = formatDeadlineDate(deadlineDate);
+  
+      if (deadlineDate >= today) {
+        dates.push(formattedDate);
+      }
     }
   }
+ 
   if (dates.length >= 1) {
     sortDates(dates);
     deadlineContainer.innerHTML = dates[0];
