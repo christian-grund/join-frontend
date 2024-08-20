@@ -16,7 +16,6 @@ async function init() {
   setNumberOnContacts();
 }
 
-
 /**
  * Set the username in contacts list.
  * If the username exists, append "(you)" to it and add it to the contacts list.
@@ -28,6 +27,7 @@ function setUsernameInContacts(userName) {
 
   if (userWithYouExistsIndex === -1) {
     contacts.push({ name: userWithYou });
+    console.log('contacts.length:', contacts.length)
   }
 }
 

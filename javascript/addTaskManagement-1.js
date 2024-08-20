@@ -123,12 +123,17 @@ async function addTaskValues(
     currentState: column,
   });
 
-  // await setItemWithAuth("tasks", JSON.stringify(tasks));
-  // await setItemNoAuth("tasks", tasks);
-
-  for (let i = 0; i < tasks.length; i++) {
-    await setItemNoAuth("tasks", tasks[i]);
+  let task = {
+    taskTitle: taskTitle,
+    taskDescription: taskDescription,
+    taskDueDate: taskDueDate,
+    selectedCategory: selectedCategory,
+    prio: selectedPrio,
+    subtasks: subtasks,
+    selectedContacts: selectedContacts,
+    currentState: column,
   }
+  await setItemNoAuth("tasks", task);
 }
 
 /**

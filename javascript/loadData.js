@@ -6,18 +6,18 @@
 async function loadData() {
   try {
     users = JSON.parse(await getItem('users'));
-} catch (e) {
-    console.info('could not load users');
+} catch (error) {
+    console.info('could not load users', error);
   }
   try {
     contacts = JSON.parse(await getItem('contacts'));
   } catch (error) {
-    console.info('could not load contacts');
+    console.info('could not load contacts', error);
   }
   try {
-    tasks = JSON.parse(await getTasks('tasks'));
+    tasks = await getItemBE('tasks');
   } catch (error) {
-    console.info('could not load tasks');
+    console.info('could not load tasks', error);
   }
 }
 
@@ -57,15 +57,12 @@ async function setItemWithAuth(path = '', value = {}) {
     const errorResponse = await response.json();
     console.error('setTask error response:', errorResponse);
   } else {
-    console.log('setTask response:', response);
     const data = await response.json();
     localStorage.setItem('authToken', data.token);  // Token speichern
   }
 }
 
 async function setItemNoAuth(path = '', value = {}) {
-  console.log('value:', value);
-  console.log('Value to be sent:', JSON.stringify(value));
   const response = await fetch(`http://localhost:8000/${path}/`, {
     method: 'POST',
     headers: {
@@ -73,13 +70,12 @@ async function setItemNoAuth(path = '', value = {}) {
     },
     body: JSON.stringify(value),
   });
-  console.log('setItemNoAuth response:', response)
-
   if (!response.ok) {
     const errorResponse = await response.json();
     console.error('setTask error response:', errorResponse);
   } else {
-    console.log('setTask response:', response);
+    const data = await response.json();
+    console.log('Task successfully created:', data);
   }
 }
   
@@ -97,18 +93,27 @@ async function getItem(path = '') {
   return responseAsJson;
 }
 
+// TOKEN???
+// headers: {
+//   'Authorization': 'Token YOUR_API_TOKEN',  // Ersetze YOUR_API_TOKEN mit deinem tatsächlichen Token
+// },
+async function getItemBE(path = '') {
+  try {
+    let response = await fetch(`http://localhost:8000/${path}/`, {
+      // Optional: Hier kannst du Header hinzufügen, wenn nötig
+    });
 
-async function getTasks(path = '') {
-  // TOKEN???
-  let response = await fetch(LOCALHOST_URL + path + '/', {
-    // headers: {
-    //   'Authorization': 'Token YOUR_API_TOKEN',  // Ersetze YOUR_API_TOKEN mit deinem tatsächlichen Token
-    // },
-  });
-  let responseAsJson = await response.json();
+    if (!response.ok) {
+      console.error('HTTP error:', response.status, response.statusText);
+      return [];
+    }
 
-  console.log('getTasks() responseAsJson', responseAsJson)
-  return responseAsJson;
+    let responseAsJson = await response.json();
+    return responseAsJson;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return [];
+  }
 }
 
 /**

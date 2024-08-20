@@ -240,9 +240,9 @@ async function renderBoardTasks() {
   await checkTaskAreaDisplayEmpty();
   // await setItemWithAuth('tasks', JSON.stringify(tasks));
   // await setItemNoAuth("tasks", tasks);
-  for (let i = 0; i < tasks.length; i++) {
-    await setItemNoAuth("tasks", tasks[i]);
-  }
+  // for (let i = 0; i < tasks.length; i++) {
+  //   await setItemNoAuth("tasks", tasks[i]);
+  // }
 }
 
 /**
