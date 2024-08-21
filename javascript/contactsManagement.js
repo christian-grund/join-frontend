@@ -255,7 +255,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
       if (selectedContact.name == nameToCompare) {
         selectedContact.name = newSavedName;
         // await setItemWithAuth('tasks', JSON.stringify(tasks));
-        await setItemWithAuth("tasks", tasks);
+        // await setItemWithAuth("tasks", tasks);
       }
     }
   }
@@ -268,6 +268,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
  * @param {number} i - The index of the contact to delete.
  */
 async function deleteContact(i, target) {
+  let contactId = contacts[i].id;
   deleteUnusedLetter(i);
   deleteSelectedContact(i);
   contacts.splice(i, 1);
@@ -278,7 +279,9 @@ async function deleteContact(i, target) {
   }
 
   document.getElementById('contact-info').innerHTML = '';
-  await saveContacts();
+  // await saveContacts();
+  // await deleteItem('contacts', i)
+  await deleteItem('contacts', contactId)
   init();
   await animateBannerContacts('banner-contact-deleted', 'banner-contact-deleted-mobile');
 }
@@ -314,7 +317,7 @@ async function deleteSelectedContact(x) {
     }
   }
   // await setItemWithAuth('tasks', JSON.stringify(tasks));
-  await setItemWithAuth("tasks", tasks);
+  // await setItemWithAuth("tasks", tasks);
 }
 
 

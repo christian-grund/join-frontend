@@ -12,6 +12,7 @@ async function loadData() {
   }
   try {
     contacts = await getItemBE('contacts');
+    console.log('contacts:', contacts)
   } catch (error) {
     console.info('could not load contacts', error);
   }
@@ -77,6 +78,19 @@ async function setItemNoAuth(path = '', value = {}) {
   } else {
     const data = await response.json();
     console.log('Item successfully created:', data);
+  }
+}
+
+async function deleteItem(path, id) {
+  const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
+  } else {
+    console.log(`${path.slice(0, -1)} with ID ${id} successfully deleted`);
+    // Hier kannst du deine UI aktualisieren, z.B. das gelöschte Element aus der Liste entfernen
   }
 }
   
