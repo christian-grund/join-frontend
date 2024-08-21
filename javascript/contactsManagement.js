@@ -116,14 +116,6 @@ async function addContact(target, id) {
   let mail = document.getElementById(`add-mail-${target}`);
   let tel = document.getElementById(`add-tel-${target}`);
 
-  // contacts.push({
-  //   name: firstLettersUppercase(name.value),
-  //   mail: mail.value,
-  //   phone: tel.value,
-  //   color: '',
-  //   isChoosen: false,
-  // });
-
   let contact = {
     name: firstLettersUppercase(name.value),
     mail: mail.value,
@@ -279,8 +271,6 @@ async function deleteContact(i, target) {
   }
 
   document.getElementById('contact-info').innerHTML = '';
-  // await saveContacts();
-  // await deleteItem('contacts', i)
   await deleteItem('contacts', contactId)
   init();
   await animateBannerContacts('banner-contact-deleted', 'banner-contact-deleted-mobile');

@@ -196,7 +196,11 @@ function convertDateFormat(date) {
  * @param {number} i - The index of the task to delete.
  */
 function deleteTask(i) {
+  let taskId = tasks[i].id;
+  deleteItem('tasks', taskId)
   tasks.splice(i, 1);
+  console.log('taskId:', taskId)
+  
   closeTaskPopup();
 }
 

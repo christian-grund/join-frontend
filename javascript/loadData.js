@@ -12,7 +12,6 @@ async function loadData() {
   }
   try {
     contacts = await getItemBE('contacts');
-    console.log('contacts:', contacts)
   } catch (error) {
     console.info('could not load contacts', error);
   }
