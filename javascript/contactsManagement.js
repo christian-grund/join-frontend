@@ -116,15 +116,26 @@ async function addContact(target, id) {
   let mail = document.getElementById(`add-mail-${target}`);
   let tel = document.getElementById(`add-tel-${target}`);
 
-  contacts.push({
+  // contacts.push({
+  //   name: firstLettersUppercase(name.value),
+  //   mail: mail.value,
+  //   phone: tel.value,
+  //   color: '',
+  //   isChoosen: false,
+  // });
+
+  let contact = {
     name: firstLettersUppercase(name.value),
     mail: mail.value,
     phone: tel.value,
     color: '',
     isChoosen: false,
-  });
-
-  await processContactAddition(target, id, name, mail, tel);
+    nr: null,
+  }
+  contacts.push(contact);
+  console.log('Contacts with new contact', contacts)
+  
+  await processContactAddition(target, id, name, mail, tel, contact);
 }
 
 
@@ -135,9 +146,10 @@ async function addContact(target, id) {
  * @param {HTMLInputElement} mail - The input element for the contact email.
  * @param {HTMLInputElement} tel - The input element for the contact phone number.
  */
-async function processContactAddition(target, id, name, mail, tel) {
-  setColorToContacts();
-  await saveContacts();
+async function processContactAddition(target, id, name, mail, tel, contact) {
+  await setColorToContacts();
+  await setItemNoAuth('contacts', contact);
+  // await saveContacts();
   await init();
   let index = findContactIndex(name.value);
   clearPopup(name, mail, tel);

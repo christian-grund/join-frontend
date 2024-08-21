@@ -189,6 +189,7 @@ async function setNumberOnContacts() {
     let contact = contacts[i];
     contact['nr'] = i;
     await setItem('contacts', JSON.stringify(contacts));
+    // PUT / PATCH contact
   }
 }
 
@@ -197,7 +198,7 @@ async function setNumberOnContacts() {
  * Assigns colors from predefined contactColors array to each contact in contacts list.
  * @returns {void}
  */
-function setColorToContacts() {
+async function setColorToContacts() {
   for (let i = 0; i < contacts.length; i++) {
     let colorIndex = i % contactColors.length;
     contacts[i].color = contactColors[colorIndex];
@@ -220,6 +221,7 @@ function sortContactsByAlphabet() {
  */
 async function saveContacts() {
   await setItem('contacts', JSON.stringify(contacts));
+  // await setItemBE('contacts', contact);
 }
 
 function saveToken(token) {

@@ -6,11 +6,12 @@
 async function loadData() {
   try {
     users = JSON.parse(await getItem('users'));
+    // users = await getItem('users');
 } catch (error) {
     console.info('could not load users', error);
   }
   try {
-    contacts = JSON.parse(await getItem('contacts'));
+    contacts = await getItemBE('contacts');
   } catch (error) {
     console.info('could not load contacts', error);
   }
@@ -72,10 +73,10 @@ async function setItemNoAuth(path = '', value = {}) {
   });
   if (!response.ok) {
     const errorResponse = await response.json();
-    console.error('setTask error response:', errorResponse);
+    console.error('setItemNoAuth error response:', errorResponse);
   } else {
     const data = await response.json();
-    console.log('Task successfully created:', data);
+    console.log('Item successfully created:', data);
   }
 }
   
