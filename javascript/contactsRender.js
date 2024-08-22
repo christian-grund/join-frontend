@@ -213,7 +213,6 @@ async function waitForTimeoutAndResolve(banner, transform) {
  * @param {number} i - The index of the contact list item.
  */
 function toggleBackground(i) {
-  console.log('i:', i)
   contacts.forEach((contact, j) => {
     const contactElement = document.getElementById(`contact-list-basic-info${j}`);
     const nameElement = document.getElementById(`name-list${j}`);

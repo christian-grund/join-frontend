@@ -28,11 +28,14 @@ function checkIfFormIsFilled(id) {
  * Sets the value of 'isChoosen' to 'false' for all contacts in the list and saves the updated contacts.
  */
 async function resetIsChoosenValue() {
+  console.log(contacts)
+  let resetIsChoosen = {isChoosen: false}
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     contact['isChoosen'] = false;
+    
+    await patchItem('contacts', contact.id, resetIsChoosen)
   }
-  await saveContacts();
 }
 
 
