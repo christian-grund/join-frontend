@@ -110,16 +110,27 @@ function checkHowManySubtasksChecked(i) {
  */
 async function subTaskActive(j, i) {
   let checkbox = document.getElementById('checkboxSubtask-' + j);
+  let taskId = tasks[i].id;
+  let subtaskOfTask = tasks[i]['subtasks'][j];
+  console.log('subTaskActive taskId', taskId);
   if (checkbox.checked === false) {
     checkbox.checked = true;
-    tasks[i]['subtasks'][j]['isActive'] = true;
-    await setItemNoAuth("tasks", tasks[i]);
+    // tasks[i]['subtasks'][j]['isActive'] = true;
+    subtaskOfTask = {
+      'isActive': true
+     };
+    // await setItemNoAuth("tasks", tasks[i]);
+    // await patchItem(tasks, taskId, subtaskOfTask);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
-    tasks[i]['subtasks'][j]['isActive'] = false;
-    await setItemNoAuth("tasks", tasks[i]);
+    // tasks[i]['subtasks'][j]['isActive'] = false;
+    subtaskOfTask = {
+      'isActive': false
+     };
+    // await patchItem(tasks, taskId, subtaskOfTask);
+    // await setItemNoAuth("tasks", tasks[i]);
     return;
   }
 }
@@ -345,7 +356,9 @@ function resetPriorityContainers() {
  * @param {string} taskDueDate - The due date of the task.
  * @param {string} selectedCategoryValue - The selected category of the task.
  */
-function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate, selectedCategoryValue) {
+async function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate, selectedCategoryValue) {
+  let currentTask = tasks[i];
+  let taskId = tasks[i].id;
   tasks[i].taskTitle = taskTitle;
   tasks[i].taskDescription = taskDescription;
   tasks[i].taskDueDate = taskDueDate;
@@ -353,6 +366,19 @@ function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate, selec
   tasks[i].selectedCategory = selectedCategoryValue;
   tasks[i].prio = selectedPrioPopupEdit;
   tasks[i]['subtasks'] = subtasks;
+
+  currentTask = {
+    taskTitle: taskTitle,
+    taskDescription: taskDescription,
+    selectedContacts: selectedContacts,
+    taskDueDate: taskDueDate,
+    selectedCategory: selectedCategoryValue,
+    prio: selectedPrioPopupEdit,
+    subtasks: subtasks,
+  }
+  console.log('currentTask:', currentTask);
+  console.log('taskId:', taskId)
+  await patchItem('tasks', taskId, currentTask);
 }
 
 /**

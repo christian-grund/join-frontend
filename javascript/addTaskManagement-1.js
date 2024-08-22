@@ -112,17 +112,6 @@ async function addTaskValues(
   selectedContacts,
   column
 ) {
-  tasks.push({
-    taskTitle: taskTitle,
-    taskDescription: taskDescription,
-    taskDueDate: taskDueDate,
-    selectedCategory: selectedCategory,
-    prio: selectedPrio,
-    subtasks: subtasks,
-    selectedContacts: selectedContacts,
-    currentState: column,
-  });
-
   let task = {
     taskTitle: taskTitle,
     taskDescription: taskDescription,
@@ -133,6 +122,7 @@ async function addTaskValues(
     selectedContacts: selectedContacts,
     currentState: column,
   }
+  tasks.push(task);
   await setItemNoAuth("tasks", task);
 }
 

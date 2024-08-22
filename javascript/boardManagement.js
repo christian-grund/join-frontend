@@ -199,7 +199,6 @@ function deleteTask(i) {
   let taskId = tasks[i].id;
   deleteItem('tasks', taskId)
   tasks.splice(i, 1);
-  console.log('taskId:', taskId)
   
   closeTaskPopup();
 }

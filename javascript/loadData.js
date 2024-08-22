@@ -92,6 +92,24 @@ async function deleteItem(path, id) {
     // Hier kannst du deine UI aktualisieren, z.B. das gelöschte Element aus der Liste entfernen
   }
 }
+
+async function patchItem(path, id, data) {
+  console.log('patchItem data:', data);
+  const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    console.error(`Failed to patch ${path.slice(0, -1)} with ID ${id}:`, response.status);
+  } else {
+    const updatedItem = await response.json();
+    console.log(`${path.slice(0, -1)} with ID ${id} successfully updated`, updatedItem);
+  }
+}
   
   
 
