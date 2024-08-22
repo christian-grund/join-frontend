@@ -188,8 +188,8 @@ async function setNumberOnContacts() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     contact['nr'] = i;
-    await setItem('contacts', JSON.stringify(contacts));
-    // PUT / PATCH contact
+    let contactNr = {nr: i}
+    patchItem('contacts', contact.id, contactNr)
   }
 }
 
@@ -221,7 +221,11 @@ function sortContactsByAlphabet() {
  */
 async function saveContacts() {
   await setItem('contacts', JSON.stringify(contacts));
-  // await setItemBE('contacts', contact);
+}
+
+async function saveContact(i) {
+  let contact = contacts[i];
+  await patchItem('contacts', contact.id, contact)
 }
 
 function saveToken(token) {

@@ -94,6 +94,7 @@ async function deleteItem(path, id) {
 }
 
 async function patchItem(path, id, data) {
+  console.log('patchItem id:', id);
   console.log('patchItem data:', data);
   const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
     method: 'PATCH',
@@ -105,10 +106,7 @@ async function patchItem(path, id, data) {
 
   if (!response.ok) {
     console.error(`Failed to patch ${path.slice(0, -1)} with ID ${id}:`, response.status);
-  } else {
-    const updatedItem = await response.json();
-    console.log(`${path.slice(0, -1)} with ID ${id} successfully updated`, updatedItem);
-  }
+  } 
 }
   
   

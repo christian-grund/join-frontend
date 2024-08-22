@@ -122,7 +122,7 @@ async function addContact(target, id) {
     phone: tel.value,
     color: '',
     isChoosen: false,
-    nr: null,
+    // nr: null,
   }
   contacts.push(contact);
   console.log('Contacts with new contact', contacts)
@@ -141,7 +141,6 @@ async function addContact(target, id) {
 async function processContactAddition(target, id, name, mail, tel, contact) {
   await setColorToContacts();
   await setItemNoAuth('contacts', contact);
-  // await saveContacts();
   await init();
   let index = findContactIndex(name.value);
   clearPopup(name, mail, tel);
@@ -225,8 +224,7 @@ async function saveEditedContact(i, target) {
  */
 async function finalizeEditedContactSave(newSavedName, i, target) {
   await checkTasksSelectedContactNames(newSavedName);
-
-  await saveContacts();
+  await saveContact(i);
   init();
   await closeContactPopup(target, 'edit');
   openContactInfo(i);

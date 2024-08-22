@@ -47,14 +47,19 @@ async function resetIsChoosenValue() {
  * @param {number} i - The index of the contact to toggle.
  */
 async function setIsChoosenValue(i) {
+  let contact = contacts[i];
   if (contacts[i]['isChoosen'] === true) {
     contacts[i]['isChoosen'] = false;
-    await saveContacts();
+    // await saveContacts();
+    let isChoosenTrue = {isChoosen: true}
+    await patchItem('contacts', contact.id, isChoosenTrue)
     return;
   }
   if (contacts[i]['isChoosen'] === false) {
     contacts[i]['isChoosen'] = true;
-    await saveContacts();
+    // await saveContacts();
+    let isChoosenFalse = {isChoosen: false}
+    await patchItem('contacts', contact.id, isChoosenFalse)
     return;
   }
 }
