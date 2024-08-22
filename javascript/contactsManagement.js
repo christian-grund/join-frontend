@@ -244,8 +244,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
 
       if (selectedContact.name == nameToCompare) {
         selectedContact.name = newSavedName;
-        // await setItemWithAuth('tasks', JSON.stringify(tasks));
-        // await setItemWithAuth("tasks", tasks);
+        await patchItem('tasks', task.id, task);
       }
     }
   }
@@ -260,7 +259,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
 async function deleteContact(i, target) {
   let contactId = contacts[i].id;
   deleteUnusedLetter(i);
-  deleteSelectedContact(i);
+  await deleteSelectedContact(i);
   contacts.splice(i, 1);
 
   if (window.innerWidth < 800) {
@@ -303,9 +302,8 @@ async function deleteSelectedContact(x) {
         j--;
       }
     }
+    await patchItem('tasks', task.id, task);
   }
-  // await setItemWithAuth('tasks', JSON.stringify(tasks));
-  // await setItemWithAuth("tasks", tasks);
 }
 
 

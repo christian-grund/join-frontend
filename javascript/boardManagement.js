@@ -334,12 +334,14 @@ function addSelectedContactsFromTask(i) {
  * Delete selected contacts from a task.
  * @param {number} i - The index of the task.
  */
-function deleteSelectedContactsFromTask(i) {
+async function deleteSelectedContactsFromTask(i) {
   let task = tasks[i];
-
+  console.log('task.selectedContacts before:', task.selectedContacts)
   for (let j = task.selectedContacts.length - 1; j >= 0; j--) {
     task.selectedContacts.splice(j, 1);
   }
+  console.log('task.selectedContacts after:', task.selectedContacts)
+  await patchItem('tasks', task.id, task);
 }
 
 /**
