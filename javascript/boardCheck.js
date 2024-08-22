@@ -111,28 +111,22 @@ function checkHowManySubtasksChecked(i) {
 async function subTaskActive(j, i) {
   let checkbox = document.getElementById('checkboxSubtask-' + j);
   let taskId = tasks[i].id;
-  let subtaskOfTask = tasks[i]['subtasks'][j];
-  console.log('subTaskActive taskId', taskId);
+  console.log('Before', tasks[i]['subtasks'][j]['isActive'])
   if (checkbox.checked === false) {
     checkbox.checked = true;
-    // tasks[i]['subtasks'][j]['isActive'] = true;
-    subtaskOfTask = {
-      'isActive': true
-     };
-    // await setItemNoAuth("tasks", tasks[i]);
-    // await patchItem(tasks, taskId, subtaskOfTask);
+    tasks[i]['subtasks'][j]['isActive'] = true;
+    console.log('After', tasks[i]['subtasks'][j]['isActive'])
+    await patchItem('tasks', taskId, tasks[i]);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
-    // tasks[i]['subtasks'][j]['isActive'] = false;
-    subtaskOfTask = {
-      'isActive': false
-     };
-    // await patchItem(tasks, taskId, subtaskOfTask);
-    // await setItemNoAuth("tasks", tasks[i]);
+    tasks[i]['subtasks'][j]['isActive'] = false;
+    console.log('After', tasks[i]['subtasks'][j]['isActive'])
+    await patchItem('tasks', taskId, tasks[i]);
     return;
   }
+  
 }
 
 /**
@@ -359,13 +353,13 @@ function resetPriorityContainers() {
 async function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate, selectedCategoryValue) {
   let currentTask = tasks[i];
   let taskId = tasks[i].id;
-  tasks[i].taskTitle = taskTitle;
-  tasks[i].taskDescription = taskDescription;
-  tasks[i].taskDueDate = taskDueDate;
-  tasks[i].selectedContacts = selectedContacts;
-  tasks[i].selectedCategory = selectedCategoryValue;
-  tasks[i].prio = selectedPrioPopupEdit;
-  tasks[i]['subtasks'] = subtasks;
+  currentTask.taskTitle = taskTitle;
+  currentTask.taskDescription = taskDescription;
+  currentTask.taskDueDate = taskDueDate;
+  currentTask.selectedContacts = selectedContacts;
+  currentTask.selectedCategory = selectedCategoryValue;
+  currentTask.prio = selectedPrioPopupEdit;
+  currentTask['subtasks'] = subtasks;
 
   currentTask = {
     taskTitle: taskTitle,
@@ -376,8 +370,6 @@ async function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate,
     prio: selectedPrioPopupEdit,
     subtasks: subtasks,
   }
-  console.log('currentTask:', currentTask);
-  console.log('taskId:', taskId)
   await patchItem('tasks', taskId, currentTask);
 }
 

@@ -93,7 +93,7 @@ async function renderSubtasks(i, id) {
 function loadSelectedContacts(i) {
   clearSelectedContactsArray();
   addSelectedContactsFromTask(i);
-  // deleteSelectedContactsFromTask(i);
+  deleteSelectedContactsFromTask(i);
   renderSelectedContactsEdit(i);
 }
 
@@ -240,9 +240,6 @@ async function renderBoardTasks() {
   await checkTaskAreaDisplayEmpty();
   // await setItemWithAuth('tasks', JSON.stringify(tasks));
   // await setItemNoAuth("tasks", tasks);
-  // for (let i = 0; i < tasks.length; i++) {
-  //   await setItemNoAuth("tasks", tasks[i]);
-  // }
 }
 
 /**
