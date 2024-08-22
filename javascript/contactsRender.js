@@ -213,9 +213,15 @@ async function waitForTimeoutAndResolve(banner, transform) {
  * @param {number} i - The index of the contact list item.
  */
 function toggleBackground(i) {
+  console.log('i:', i)
   contacts.forEach((contact, j) => {
-    document.getElementById(`contact-list-basic-info${j}`).classList.remove('bg-primary');
-    document.getElementById(`name-list${j}`).classList.remove('color-white');
+    const contactElement = document.getElementById(`contact-list-basic-info${j}`);
+    const nameElement = document.getElementById(`name-list${j}`);
+  
+    if (contactElement && nameElement) {  
+      contactElement.classList.remove('bg-primary');
+      nameElement.classList.remove('color-white');
+    }
   });
 
   document.getElementById(`contact-list-basic-info${i}`).classList.add('bg-primary');
