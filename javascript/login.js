@@ -94,29 +94,32 @@ async function loadUser() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
+  // Anfrage an das Backend für die Authentifizierung senden
   const response = await fetch('http://localhost:8000/api/login/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password }),
-    credentials: 'include' // Für Session-basierte Authentifizierung erforderlich
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })  // E-Mail und Passwort senden
   });
 
   if (response.ok) {
       const data = await response.json();
-      console.log('Login successful', data);
+      localStorage.setItem('authToken', data.token);  // Token speichern
+      console.log('Login successful');
+      await rememberMe();
+      await setUser(email);
+      window.location.href = "./summary.html";
   } else {
       console.error('Login failed');
   }
-
-
-  if (searchForEmail(email, password)) {
-    await rememberMe();
-    await setUser(email);
-    window.location.href = "./summary.html";
-  }
+  // if (searchForEmail(email, password)) {}
 }
+
+
+
+
+
 
 
 /**

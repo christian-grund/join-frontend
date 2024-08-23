@@ -28,6 +28,24 @@ async function loadData() {
   }
 }
 
+async function fetchUserData() {
+  const token = localStorage.getItem('authToken');
+  const response = await fetch('http://localhost:8000/api/current_user/', {
+      method: 'GET',
+      headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+      }
+  });
+
+  if (response.ok) {
+      const userData = await response.json();
+      console.log('User data:', userData);
+  } else {
+      console.error('Failed to fetch user data');
+  }
+}
+
 /**
  * Sets an item in the storage.
  * @param {string} key - The key of the item to set.
