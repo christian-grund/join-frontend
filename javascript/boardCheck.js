@@ -111,18 +111,16 @@ function checkHowManySubtasksChecked(i) {
 async function subTaskActive(j, i) {
   let checkbox = document.getElementById('checkboxSubtask-' + j);
   let taskId = tasks[i].id;
-  console.log('Before', tasks[i]['subtasks'][j]['isActive'])
+  console.log('After', tasks[i]['subtasks'][j]['isActive'])
   if (checkbox.checked === false) {
     checkbox.checked = true;
     tasks[i]['subtasks'][j]['isActive'] = true;
-    console.log('After', tasks[i]['subtasks'][j]['isActive'])
     await patchItem('tasks', taskId, tasks[i]);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
     tasks[i]['subtasks'][j]['isActive'] = false;
-    console.log('After', tasks[i]['subtasks'][j]['isActive'])
     await patchItem('tasks', taskId, tasks[i]);
     return;
   }

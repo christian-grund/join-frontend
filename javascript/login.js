@@ -54,7 +54,6 @@ async function signUp() {
       email: emailSignUp.value,
       password: passwordSignUp.value,
     };
-    // await setItem("users", JSON.stringify(users));
     await setItemNoAuth("api/signup", user);
 
     loadLogIn();
@@ -94,13 +93,23 @@ function checkMatchPassword() {
 async function loadUser() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-  await setItem("users", JSON.stringify(users));
-  // hier for-schleife mit user
-  for (let i = 0; i < users.length; i++) {
-    const user1 = users[i];
-    console.log('loadUser user:', user1)
+
+  const response = await fetch('http://localhost:8000/api/login/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password }),
+    credentials: 'include' // Für Session-basierte Authentifizierung erforderlich
+  });
+
+  if (response.ok) {
+      const data = await response.json();
+      console.log('Login successful', data);
+  } else {
+      console.error('Login failed');
   }
-  // await setItem("users", user);
+
 
   if (searchForEmail(email, password)) {
     await rememberMe();
@@ -321,3 +330,4 @@ function checkPasswordsAreSame() {
     return true;
   }
 }
+

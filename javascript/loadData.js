@@ -5,8 +5,14 @@
  */
 async function loadData() {
   try {
-    users = JSON.parse(await getItem('users'));
-    // users = await getItem('users');
+    // users = JSON.parse(await getItem('users'));
+    users = await getItemWithAuth('users');
+    if (users == null) {
+      users = [];
+      console.log('users == null:', users)
+    }
+    
+
 } catch (error) {
     console.info('could not load users', error);
   }
@@ -123,11 +129,7 @@ async function getItem(path = '') {
   return responseAsJson;
 }
 
-// TOKEN???
-// headers: {
-//   'Authorization': 'Token YOUR_API_TOKEN',  // Ersetze YOUR_API_TOKEN mit deinem tatsächlichen Token
-// },
-async function getItemBE(path = '') {
+async function getItemBE(path) {
   try {
     let response = await fetch(`http://localhost:8000/${path}/`, {
     });
@@ -140,6 +142,27 @@ async function getItemBE(path = '') {
   } catch (error) {
     console.error('Fetch error:', error);
     return [];
+  }
+}
+
+async function getItemWithAuth(path) {
+  const token = localStorage.getItem('authToken');  // Token aus localStorage abrufen
+
+  const response = await fetch(`http://localhost:8000/${path}/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`,  // Token im Authorization-Header
+    },
+  });
+
+  if (response.ok) {
+    const users = await response.json();
+    console.log('Fetched users:', users);
+    return users;
+  } else {
+    console.error('Failed to fetch users');
+    return null;
   }
 }
 

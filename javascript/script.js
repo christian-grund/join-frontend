@@ -237,3 +237,18 @@ function getToken() {
   console.log('getToken authToken:', authToken);
   return authToken;
 }
+
+function logout() {
+  fetch('http://localhost:8000/api/logout/', {
+      method: 'POST',
+      credentials: 'include' // Wichtig für Session-basiertes Logout
+  })
+  .then(response => {
+      if (response.ok) {
+          console.log('Logout successful');
+      } else {
+          console.error('Logout failed');
+      }
+  })
+  .catch(error => console.error('Error:', error));
+}

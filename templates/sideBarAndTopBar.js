@@ -42,7 +42,7 @@ return `
           <a href="./help.html"><p>Help</p></a>
         </div>
         <div class="dropdown-content">
-          <a href="./logIn.html"><p>Log out</p></a>
+          <a onclick="logout()" href="./logIn.html"><p>Log out</p></a>
         </div>
       </div>
 
