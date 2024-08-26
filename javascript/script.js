@@ -225,7 +225,7 @@ async function saveContacts() {
 
 async function saveContact(i) {
   let contact = contacts[i];
-  await patchItem('contacts', contact.id, contact)
+  await patchItemWithAuth('contacts', contact.id, contact)
 }
 
 function saveToken(token) {

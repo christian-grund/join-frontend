@@ -123,7 +123,7 @@ async function addTaskValues(
     currentState: column,
   }
   tasks.push(task);
-  await setItemNoAuth("tasks", task);
+  await setItemWithAuth("tasks", task);
 }
 
 /**

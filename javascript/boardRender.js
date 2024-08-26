@@ -238,8 +238,6 @@ async function renderBoardTasks() {
   await renderAwaitFeedbackTasks();
   await renderDoneTasks();
   await checkTaskAreaDisplayEmpty();
-  // await setItemWithAuth('tasks', JSON.stringify(tasks));
-  // await setItemNoAuth("tasks", tasks);
 }
 
 /**

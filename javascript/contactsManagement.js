@@ -244,7 +244,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
 
       if (selectedContact.name == nameToCompare) {
         selectedContact.name = newSavedName;
-        await patchItem('tasks', task.id, task);
+        await patchItemWithAuth('tasks', task.id, task);
       }
     }
   }
@@ -303,7 +303,7 @@ async function deleteSelectedContact(x) {
         j--;
       }
     }
-    await patchItem('tasks', task.id, task);
+    await patchItemWithAuth('tasks', task.id, task);
   }
 }
 

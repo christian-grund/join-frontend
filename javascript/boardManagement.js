@@ -197,7 +197,7 @@ function convertDateFormat(date) {
  */
 function deleteTask(i) {
   let taskId = tasks[i].id;
-  deleteItem('tasks', taskId)
+  deleteItemWithAuth('tasks', taskId)
   tasks.splice(i, 1);
   
   closeTaskPopup();
@@ -341,7 +341,7 @@ async function deleteSelectedContactsFromTask(i) {
     task.selectedContacts.splice(j, 1);
   }
   console.log('task.selectedContacts after:', task.selectedContacts)
-  await patchItem('tasks', task.id, task);
+  await patchItemWithAuth('tasks', task.id, task);
 }
 
 /**

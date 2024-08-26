@@ -115,13 +115,13 @@ async function subTaskActive(j, i) {
   if (checkbox.checked === false) {
     checkbox.checked = true;
     tasks[i]['subtasks'][j]['isActive'] = true;
-    await patchItem('tasks', taskId, tasks[i]);
+    await patchItemWithAuth('tasks', taskId, tasks[i]);
     return;
   }
   if (checkbox.checked === true) {
     checkbox.checked = false;
     tasks[i]['subtasks'][j]['isActive'] = false;
-    await patchItem('tasks', taskId, tasks[i]);
+    await patchItemWithAuth('tasks', taskId, tasks[i]);
     return;
   }
   
@@ -258,9 +258,10 @@ function allowDrop(ev) {
  */
 async function moveTo(category) {
   tasks[currentDraggedElement]['currentState'] = category;
-  // removeHighlight(category);
+  await patchItemWithAuth('tasks', tasks[currentDraggedElement]['id'], {currentState: category});
   await updateHTML();
   elementIsDragging = false;
+
 }
 
 /**
@@ -368,7 +369,7 @@ async function updateTaskInformation(i, taskTitle, taskDescription, taskDueDate,
     prio: selectedPrioPopupEdit,
     subtasks: subtasks,
   }
-  await patchItem('tasks', taskId, currentTask);
+  await patchItemWithAuth('tasks', taskId, currentTask);
 }
 
 /**
