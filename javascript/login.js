@@ -171,12 +171,17 @@ function resetForm() {
  * Logs in the guest user with predefined credentials.
  * Redirects to the summary page upon successful login.
  */
-function logInGuest() {
-  let email = "Guest@web.de";
+async function logInGuest() {
+  let email = "guest@web.de";
   let password = "Admin123";
-  user.push("2");
-  let userAsText = JSON.stringify(user);
-  localStorage.setItem("user", userAsText);
+  let emailfield = document.getElementById("email");
+  let passwordfield = document.getElementById("password");
+  emailfield.value = email;
+  passwordfield.value = password;
+  await loadUser();
+  // user.push("2");
+  // let userAsText = JSON.stringify(user);
+  // localStorage.setItem("user", userAsText);
   if (searchForEmail(email, password)) {
     window.location.href = "./summary.html";
   }
@@ -236,7 +241,6 @@ function toggleShowPassword(passwordId, passwordIconId) {
   } else {
     passwordField.type = "password";
     passwordIcon.src = "./assets/img/icons/lock.svg";
-    passwordIcon.classList.add("inputImgLock");
   }
 }
 

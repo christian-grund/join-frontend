@@ -78,7 +78,7 @@ function signupHtml() {
       <div class="checkboxPrivacyPolicy dp-flex">
               <input type="checkbox" id="checkboxPrivatPolicy" name="checkboxPrivatPolicy" class="checkboxSavePassword" onclick="enableButton()"/>
               <label for="checkboxPrivatPolicy"></label>
-              <p class="acceptPrivacyGrey">i accept the 
+              <p class="acceptPrivacyGrey">I accept the 
                   <a href="./privacyPolicyOffline.html" target=”_blank” class="privacyPolicyLink
                   ">Privacy policy</a>
               </p>
