@@ -140,7 +140,7 @@ async function addContact(target, id) {
  */
 async function processContactAddition(target, id, name, mail, tel, contact) {
   await setColorToContacts();
-  await setItemNoAuth('contacts', contact);
+  await setItemWithAuth('contacts', contact);
   await init();
   let index = findContactIndex(name.value);
   clearPopup(name, mail, tel);

@@ -17,7 +17,7 @@ async function loadData() {
     console.info('could not load users', error);
   }
   try {
-    contacts = await getItemBE('contacts');
+    contacts = await getItemWithAuth('contacts');
   } catch (error) {
     console.info('could not load contacts', error);
   }
@@ -81,10 +81,7 @@ async function setItemWithAuth(path = '', value = {}) {
   if (!response.ok) {
     const errorResponse = await response.json();
     console.error('setTask error response:', errorResponse);
-  } else {
-    const data = await response.json();
-    localStorage.setItem('authToken', data.token);  // Token speichern
-  }
+  } 
 }
 
 async function setItemNoAuth(path = '', value = {}) {
@@ -118,8 +115,6 @@ async function deleteItem(path, id) {
 }
 
 async function patchItem(path, id, data) {
-  console.log('patchItem id:', id);
-  console.log('patchItem data:', data);
   const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
     method: 'PATCH',
     headers: {

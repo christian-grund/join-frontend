@@ -113,6 +113,7 @@ async function loadUser() {
   } else {
       console.error('Login failed');
   }
+  
   // if (searchForEmail(email, password)) {}
 }
 
