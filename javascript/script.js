@@ -138,6 +138,57 @@ function checkForUserName() {
   }
 }
 
+// function checkForUserId() {
+//   for (let i = 0; i < users.length; i++) {
+//     let userId = users[i]['id'];
+//     if (userId === users[user]['id']) {
+//       console.log('checkForUserId:', userId)
+//       return userId;
+//     }
+//   }
+// }
+
+/**
+ * Set the username in contacts list.
+ * If the username exists, append "(you)" to it and add it to the contacts list.
+ * @param {string} userName - The username to be added to contacts.
+ */
+function setUsernameInContacts() {
+  let currentUser = checkForUser();
+  let userName = currentUser['username'];
+  
+  let userWithYou = userName + ' (you)';
+  let userWithYouExistsIndex = contacts.findIndex((contact) => contact.name === userWithYou);
+
+  if (userWithYouExistsIndex === -1) {
+    let currentContact = {
+      name: userWithYou,
+      mail: currentUser['email'],
+      phone: '',
+      color: '',
+      isChoosen: false,
+    }
+    setColorToContacts();
+    contacts.push(currentContact);
+    console.log('currentContact', currentContact)
+    setItemWithAuth('contacts', currentContact)
+  }
+}
+
+
+function checkForUser() {
+  for (let i = 0; i < users.length; i++) {
+    let currentUser = users[i];
+    let userName = users[i]['username'];
+    if (userName === users[user]['username']) {
+      console.log('checkForUser user:', currentUser)
+      return currentUser;
+    }
+  }
+}
+
+
+
 /**
  * Toggles CSS classes on an element.
  * @param {string} id - The ID of the element.

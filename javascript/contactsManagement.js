@@ -11,26 +11,10 @@ async function init() {
   setUserInitials();
   setUserToContacts();
   setColorToContacts();
+  setUsernameInContacts();
   renderContacts();
   setColorToActive('sidebarContacts', 'contacts-img', 'bottomBarContactsMobile', 'contactsImgMobile');
-  setNumberOnContacts();
 }
-
-/**
- * Set the username in contacts list.
- * If the username exists, append "(you)" to it and add it to the contacts list.
- * @param {string} userName - The username to be added to contacts.
- */
-function setUsernameInContacts(userName) {
-  let userWithYou = userName + ' (you)';
-  let userWithYouExistsIndex = contacts.findIndex((contact) => contact.name === userWithYou);
-
-  if (userWithYouExistsIndex === -1) {
-    contacts.push({ name: userWithYou });
-    console.log('contacts.length:', contacts.length)
-  }
-}
-
 
 /**
  * Render the contacts in the UI.

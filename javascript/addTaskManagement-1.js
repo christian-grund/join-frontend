@@ -31,6 +31,7 @@ async function init() {
   changePrioToMedium("mediumContainer", "mediumImg");
   setMinDateToday("myDateInput");
   await setNumberOnContacts();
+  setUsernameInContacts();
 }
 
 /**

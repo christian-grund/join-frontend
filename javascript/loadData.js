@@ -130,22 +130,7 @@ async function deleteItemWithAuth(path, id) {
   }
 }
 
-// async function patchItem(path, id, data) {
-//   const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
-//     method: 'PATCH',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data),
-//   });
-
-//   if (!response.ok) {
-//     console.error(`Failed to patch ${path.slice(0, -1)} with ID ${id}:`, response.status);
-//   } 
-// }
-
 async function patchItemWithAuth(path, id, data) {
-  console.log('patchItemWithAuth data:', data);
   const token = localStorage.getItem('authToken');  
 
   const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
@@ -159,9 +144,7 @@ async function patchItemWithAuth(path, id, data) {
 
   if (!response.ok) {
     console.error(`Failed to patch ${path.slice(0, -1)} with ID ${id}:`, response.status);
-  } else {
-    console.log('PatchItemWithAuth response:', response.data);
-  }
+  } 
 }
   
   
@@ -207,7 +190,6 @@ async function getItemWithAuth(path) {
 
   if (response.ok) {
     const users = await response.json();
-    console.log(`Fetched ${path}:`, users);
     return users;
   } else {
     console.error(`Failed to fetch ${path}`);

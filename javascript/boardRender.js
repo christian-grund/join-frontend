@@ -19,6 +19,7 @@ async function initBoard() {
   setNumberOnContacts();
   await resetIsChoosenValue();
   setupEnterKeyListener();
+  setUsernameInContacts();
 }
 
 /**
