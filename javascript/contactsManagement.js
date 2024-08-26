@@ -257,6 +257,7 @@ async function checkTasksSelectedContactNames(newSavedName) {
  * @param {number} i - The index of the contact to delete.
  */
 async function deleteContact(i, target) {
+  console.log('deleteContact contact:', contacts[i])
   let contactId = contacts[i].id;
   deleteUnusedLetter(i);
   await deleteSelectedContact(i);
@@ -268,7 +269,7 @@ async function deleteContact(i, target) {
   }
 
   document.getElementById('contact-info').innerHTML = '';
-  await deleteItem('contacts', contactId)
+  await deleteItemWithAuth('contacts', contactId)
   init();
   await animateBannerContacts('banner-contact-deleted', 'banner-contact-deleted-mobile');
 }

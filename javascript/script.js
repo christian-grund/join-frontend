@@ -189,7 +189,7 @@ async function setNumberOnContacts() {
     let contact = contacts[i];
     contact['nr'] = i;
     let contactNr = {nr: i}
-    // patchItem('contacts', contact.id, contactNr)
+    patchItemWithAuth('contacts', contact.id, contactNr)
   }
 }
 
@@ -225,7 +225,7 @@ async function saveContacts() {
 
 async function saveContact(i) {
   let contact = contacts[i];
-  // await patchItem('contacts', contact.id, contact)
+  await patchItem('contacts', contact.id, contact)
 }
 
 function saveToken(token) {

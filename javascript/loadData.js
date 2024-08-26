@@ -5,7 +5,6 @@
  */
 async function loadData() {
   try {
-    // users = JSON.parse(await getItem('users'));
     users = await getItemWithAuth('users');
     if (users == null) {
       users = [];
@@ -66,13 +65,13 @@ async function setItem(path = '', value = {}) {
 
 
 async function setItemWithAuth(path = '', value = {}) {
-  const token = localStorage.getItem('authToken');  // Token aus localStorage abrufen
+  const token = localStorage.getItem('authToken');  
 
   const response = await fetch(`http://localhost:8000/${path}/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${token}`,  // Token im Authorization-Header
+      'Authorization': `Token ${token}`, 
     },
     body: JSON.stringify(value),
   });
@@ -110,7 +109,24 @@ async function deleteItem(path, id) {
     console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
   } else {
     console.log(`${path.slice(0, -1)} with ID ${id} successfully deleted`);
-    // Hier kannst du deine UI aktualisieren, z.B. das gelöschte Element aus der Liste entfernen
+  }
+}
+
+async function deleteItemWithAuth(path, id) {
+  const token = localStorage.getItem('authToken');
+  
+  const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`,  
+    },
+  });
+
+  if (!response.ok) {
+    console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
+  } else {
+    console.log(`${path.slice(0, -1)} with ID ${id} successfully deleted`);
   }
 }
 
@@ -119,6 +135,24 @@ async function patchItem(path, id, data) {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    console.error(`Failed to patch ${path.slice(0, -1)} with ID ${id}:`, response.status);
+  } 
+}
+
+async function patchItemWithAuth(path, id, data) {
+  const token = localStorage.getItem('authToken');  
+
+
+  const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`, 
     },
     body: JSON.stringify(data),
   });
@@ -136,7 +170,7 @@ async function patchItem(path, id, data) {
  * @returns {Promise<any>} - A promise that resolves with the retrieved item.
  */
 async function getItem(path = '') {
-  let response = await fetch(STORAGE_URL + path + '.json'); // wichtig!!
+  let response = await fetch(STORAGE_URL + path + '.json'); 
   let responseAsJson = await response.json();
 
   return responseAsJson;
@@ -159,13 +193,13 @@ async function getItemBE(path) {
 }
 
 async function getItemWithAuth(path) {
-  const token = localStorage.getItem('authToken');  // Token aus localStorage abrufen
+  const token = localStorage.getItem('authToken');  
 
   const response = await fetch(`http://localhost:8000/${path}/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${token}`,  // Token im Authorization-Header
+      'Authorization': `Token ${token}`,  
     },
   });
 

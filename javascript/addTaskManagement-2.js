@@ -33,7 +33,7 @@ async function resetIsChoosenValue() {
     let contact = contacts[i];
     contact['isChoosen'] = false;
     
-    // await patchItem('contacts', contact.id, resetIsChoosen)
+    await patchItemWithAuth('contacts', contact.id, resetIsChoosen)
   }
 }
 
@@ -51,14 +51,14 @@ async function setIsChoosenValue(i) {
     contacts[i]['isChoosen'] = false;
     // await saveContacts();
     let isChoosenTrue = {isChoosen: true}
-    // await patchItem('contacts', contact.id, isChoosenTrue)
+    await patchItemWithAuth('contacts', contact.id, isChoosenTrue)
     return;
   }
   if (contacts[i]['isChoosen'] === false) {
     contacts[i]['isChoosen'] = true;
     // await saveContacts();
     let isChoosenFalse = {isChoosen: false}
-    // await patchItem('contacts', contact.id, isChoosenFalse)
+    await patchItemWithAuth('contacts', contact.id, isChoosenFalse)
     return;
   }
 }
