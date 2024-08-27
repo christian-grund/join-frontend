@@ -30,8 +30,10 @@ async function init() {
   await showTaskForm("assignedTo");
   changePrioToMedium("mediumContainer", "mediumImg");
   setMinDateToday("myDateInput");
-  await setNumberOnContacts();
   setUsernameInContacts();
+  await setNumberOnContacts();
+ 
+  setColorsToSelectedContacts();
 }
 
 /**
@@ -44,7 +46,6 @@ function setupEnterKeyListenerNew() {
       .getElementById("subTaskInput")
       .addEventListener("keypress", function (event) {
         if (event.key === "Enter" || event.keyCode == 13) {
-          console.log("setupEnterKeyListener");
           addSubTask("subTaskInput", "subTaskContainer");
           event.preventDefault();
         }

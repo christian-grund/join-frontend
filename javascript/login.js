@@ -106,7 +106,6 @@ async function loadUser() {
   if (response.ok) {
       const data = await response.json();
       localStorage.setItem('authToken', data.token);  // Token speichern
-      console.log('Login successful');
       await rememberMe();
       await setUser(email);
       window.location.href = "./summary.html";
@@ -133,7 +132,6 @@ async function setUser(email) {
       user = [];
       user.push(i);
       let userAsText = JSON.stringify(user);
-      console.log('userAsText:', userAsText)
       localStorage.setItem("user", userAsText);
     }
   }

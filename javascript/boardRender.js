@@ -13,13 +13,15 @@ async function initBoard() {
   await includeHTML();
   setUserInitials();
   setUserToContacts();
-  setColorToContacts();
   setColorToActive('sidebarBoard', 'board-img', 'bottomBarBoardMobile', 'boardImgMobile');
   checkTaskAreaDisplayEmpty();
   setNumberOnContacts();
   await resetIsChoosenValue();
   setupEnterKeyListener();
   setUsernameInContacts();
+  setColorToContacts();
+  await setColorsToSelectedContacts();
+  renderBoardTasks();
 }
 
 /**
@@ -30,7 +32,6 @@ function setupEnterKeyListener() {
   document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('subTaskInput').addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
-        console.log('setupEnterKeyListener');
         addSubTask('subTaskInput', 'subTaskContainer');
         event.preventDefault();
       }

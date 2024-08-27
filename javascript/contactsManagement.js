@@ -108,9 +108,7 @@ async function addContact(target, id) {
     isChoosen: false,
     // nr: null,
   }
-  contacts.push(contact);
-  console.log('Contacts with new contact', contacts)
-  
+  contacts.push(contact);  
   await processContactAddition(target, id, name, mail, tel, contact);
 }
 
@@ -241,7 +239,6 @@ async function checkTasksSelectedContactNames(newSavedName) {
  * @param {number} i - The index of the contact to delete.
  */
 async function deleteContact(i, target) {
-  console.log('deleteContact contact:', contacts[i])
   let contactId = contacts[i].id;
   deleteUnusedLetter(i);
   await deleteSelectedContact(i);

@@ -138,22 +138,12 @@ function checkForUserName() {
   }
 }
 
-// function checkForUserId() {
-//   for (let i = 0; i < users.length; i++) {
-//     let userId = users[i]['id'];
-//     if (userId === users[user]['id']) {
-//       console.log('checkForUserId:', userId)
-//       return userId;
-//     }
-//   }
-// }
-
 /**
  * Set the username in contacts list.
  * If the username exists, append "(you)" to it and add it to the contacts list.
  * @param {string} userName - The username to be added to contacts.
  */
-function setUsernameInContacts() {
+async function setUsernameInContacts() {
   let currentUser = checkForUser();
   let userName = currentUser['username'];
   
@@ -165,12 +155,13 @@ function setUsernameInContacts() {
       name: userWithYou,
       mail: currentUser['email'],
       phone: '',
-      color: '',
+      nr: '',
       isChoosen: false,
     }
-    setColorToContacts();
     contacts.push(currentContact);
-    console.log('currentContact', currentContact)
+    await setColorToContacts();
+    console.log('setUsernameInContacts aufruf')
+    await setNumberOnContacts();
     setItemWithAuth('contacts', currentContact)
   }
 }
@@ -181,7 +172,6 @@ function checkForUser() {
     let currentUser = users[i];
     let userName = users[i]['username'];
     if (userName === users[user]['username']) {
-      console.log('checkForUser user:', currentUser)
       return currentUser;
     }
   }
@@ -285,7 +275,6 @@ function saveToken(token) {
 
 function getToken() {
   let authToken = localStorage.getItem('authToken');
-  console.log('getToken authToken:', authToken);
   return authToken;
 }
 
@@ -295,11 +284,41 @@ function logout() {
       credentials: 'include' // Wichtig für Session-basiertes Logout
   })
   .then(response => {
-      if (response.ok) {
-          console.log('Logout successful');
-      } else {
-          console.error('Logout failed');
+      if (!response.ok) {
+        console.error('Logout failed');
       }
   })
   .catch(error => console.error('Error:', error));
+}
+
+async function setColorsToSelectedContacts() {
+  // Durchlaufe alle Tasks
+  for (const task of tasks) {
+      // Flag to check if we need to patch
+      let shouldPatch = false;
+
+      // Durchlaufe alle selectedContacts im aktuellen Task
+      task.selectedContacts.forEach(selectedContact => {
+          // Finde die Farbe des Kontakts
+          contacts.forEach(contact => {
+              if (contact.name === selectedContact.name && selectedContact.color !== contact.color) {
+                  selectedContact.color = contact.color;
+                  shouldPatch = true;
+              }
+          });
+      });
+
+      // Wenn wir die Farben aktualisieren, dann patch den Task
+      if (shouldPatch) {
+          const updatedSelectedContacts = [];
+          task.selectedContacts.forEach(contact => {
+              updatedSelectedContacts.push({
+                  name: contact.name,
+                  color: contact.color,
+                  selectedContactsId: contact.selectedContactsId
+              });
+          });
+          await patchItemWithAuth('tasks', task.id, { selectedContacts: updatedSelectedContacts });
+      }
+  }
 }

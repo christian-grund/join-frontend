@@ -336,11 +336,9 @@ function addSelectedContactsFromTask(i) {
  */
 async function deleteSelectedContactsFromTask(i) {
   let task = tasks[i];
-  console.log('task.selectedContacts before:', task.selectedContacts)
   for (let j = task.selectedContacts.length - 1; j >= 0; j--) {
     task.selectedContacts.splice(j, 1);
   }
-  console.log('task.selectedContacts after:', task.selectedContacts)
   await patchItemWithAuth('tasks', task.id, task);
 }
 

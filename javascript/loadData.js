@@ -8,11 +8,8 @@ async function loadData() {
     users = await getItemWithAuth('users');
     if (users == null) {
       users = [];
-      console.log('users == null:', users)
     }
-    
-
-} catch (error) {
+  } catch (error) {
     console.info('could not load users', error);
   }
   try {
@@ -37,11 +34,8 @@ async function fetchUserData() {
       }
   });
 
-  if (response.ok) {
-      const userData = await response.json();
-      console.log('User data:', userData);
-  } else {
-      console.error('Failed to fetch user data');
+  if (!response.ok) {
+    console.error('Failed to fetch user data');
   }
 }
 
@@ -75,7 +69,6 @@ async function setItemWithAuth(path = '', value = {}) {
     },
     body: JSON.stringify(value),
   });
-  console.log('setItemWithAuth response:', response)
 
   if (!response.ok) {
     const errorResponse = await response.json();
@@ -94,10 +87,7 @@ async function setItemNoAuth(path = '', value = {}) {
   if (!response.ok) {
     const errorResponse = await response.json();
     console.error('setItemNoAuth error response:', errorResponse);
-  } else {
-    const data = await response.json();
-    console.log('Item successfully created:', data);
-  }
+  } 
 }
 
 async function deleteItem(path, id) {
@@ -107,8 +97,6 @@ async function deleteItem(path, id) {
 
   if (!response.ok) {
     console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
-  } else {
-    console.log(`${path.slice(0, -1)} with ID ${id} successfully deleted`);
   }
 }
 
@@ -125,8 +113,6 @@ async function deleteItemWithAuth(path, id) {
 
   if (!response.ok) {
     console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
-  } else {
-    console.log(`${path.slice(0, -1)} with ID ${id} successfully deleted`);
   }
 }
 

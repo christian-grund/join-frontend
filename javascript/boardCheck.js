@@ -111,7 +111,6 @@ function checkHowManySubtasksChecked(i) {
 async function subTaskActive(j, i) {
   let checkbox = document.getElementById('checkboxSubtask-' + j);
   let taskId = tasks[i].id;
-  console.log('After', tasks[i]['subtasks'][j]['isActive'])
   if (checkbox.checked === false) {
     checkbox.checked = true;
     tasks[i]['subtasks'][j]['isActive'] = true;
