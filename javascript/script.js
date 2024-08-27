@@ -156,13 +156,13 @@ async function setUsernameInContacts() {
       mail: currentUser['email'],
       phone: '',
       nr: '',
+      id: '',
       isChoosen: false,
     }
     contacts.push(currentContact);
     await setColorToContacts();
-    console.log('setUsernameInContacts aufruf')
-    await setNumberOnContacts();
-    setItemWithAuth('contacts', currentContact)
+    await setItemWithAuth('contacts', currentContact);
+    contacts = await getItemWithAuth('contacts');
   }
 }
 
@@ -229,7 +229,7 @@ async function setNumberOnContacts() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     contact['nr'] = i;
-    let contactNr = {nr: i}
+    let contactNr = {nr: i};
     patchItemWithAuth('contacts', contact.id, contactNr)
   }
 }

@@ -112,15 +112,7 @@ async function loadUser() {
   } else {
       console.error('Login failed');
   }
-  
-  // if (searchForEmail(email, password)) {}
 }
-
-
-
-
-
-
 
 /**
  * Sets user data in local storage based on the provided email.

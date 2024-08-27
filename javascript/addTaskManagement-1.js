@@ -30,9 +30,8 @@ async function init() {
   await showTaskForm("assignedTo");
   changePrioToMedium("mediumContainer", "mediumImg");
   setMinDateToday("myDateInput");
-  setUsernameInContacts();
+  await setUsernameInContacts();
   await setNumberOnContacts();
- 
   setColorsToSelectedContacts();
 }
 
