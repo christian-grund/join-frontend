@@ -22,8 +22,6 @@ async function initBoard() {
   setColorToContacts();
   await setColorsToSelectedContacts();
   renderBoardTasks();
-  contacts = await getItemWithAuth('contacts');
-  // console.log('contacts:', contacts);
 }
 
 /**

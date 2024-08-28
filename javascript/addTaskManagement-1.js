@@ -34,8 +34,6 @@ async function init() {
   await setNumberOnContacts();
   await resetIsChoosenValue();
   setColorsToSelectedContacts();
-  contacts = await getItemWithAuth('contacts');
-  // console.log('contacts:', contacts);
 }
 
 /**
@@ -127,7 +125,11 @@ async function addTaskValues(
     currentState: column,
   }
   tasks.push(task);
+  console.log('tasks before:', tasks);
   await setItemWithAuth("tasks", task);
+  tasks = await getItemWithAuth('tasks');
+  console.log('tasks after:', tasks);
+
 }
 
 /**
