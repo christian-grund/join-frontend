@@ -421,20 +421,22 @@ function deleteSubTask(number, idContainer) {
  * @param {string} selectedContact - The selected contact.
  * @param {string} color - The color of the selected contact.
  */
-function removeSelectedContact(selectedContact) {
-  let selectedContactsIndex = selectedContacts.findIndex(
-    (contact) => contact.selectedContactsId === selectedContact
-  );
-  let usedColor = selectedContacts[selectedContactsIndex].color;
-  let selectedContactsName = selectedContacts[selectedContactsIndex].name;
+function removeSelectedContact(selectedContact, i) {
+  // let selectedContactsIndex = selectedContacts.findIndex(
+  //   (contact) => contact.selectedContactsId === selectedContact);
+  console.log('newSelectedContact:', selectedContact);
+  let selectedContactsIndex = selectedContact['selectedContactsId'];
+  console.log('selectedContactsIndex:', selectedContactsIndex);
+  let usedColor = selectedContact.color;
+  let selectedContactsName = selectedContact.name;
   let index = selectedContacts.findIndex(
     (contact) => contact.name === selectedContactsName
   );
   if (checkIfSelectedContactExist(selectedContactsName, usedColor)) {
     selectedContacts.splice(index, 1);
     let assignedDropdown = document.getElementById("assignedDropdown");
-    let userID = document.getElementById(`user-${selectedContact}`);
-    let checkboxImage = document.getElementById(`checkBox-${selectedContact}`);
+    let userID = document.getElementById(`user-${i}`);
+    let checkboxImage = document.getElementById(`checkBox-${i}`);
     checkboxImage.src = "assets/img/icons/checkBox.svg";
     userID.classList.remove("selected-profile-active-item");
     assignedDropdown.classList.toggle("addTask-selected");

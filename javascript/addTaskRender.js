@@ -286,12 +286,21 @@ function closeDropDownCategory(event) {
  */
 async function addAssignedContact(i, color, contactsNumber) {
   let assignedDropdown = document.getElementById('assignedDropdown');
-  let selectedContact = contacts[contactsNumber]['name'];
+  let selectedContact;
+  for (let i = 0; i < contacts.length; i++) {
+    if (contactsNumber == contacts[i]['nr']) {
+      selectedContact = contacts[i];
+      break;
+    }
+  }
+  let selectedContactName = selectedContact['name'];
+  let selectedContactNr = selectedContact['nr'];
   let checkboxImage = document.getElementById(`checkBox-${i}`);
   let userID = document.getElementById(`user-${i}`);
 
-  addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContact, color);
-  await setIsChoosenValue(contactsNumber);
+  addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContactNr, selectedContactName, color, i);
+  await setIsChoosenValue(selectedContact);
+  // await setIsChoosenValue(i);
   await renderSelectedContacts(i);
 }
 
@@ -305,12 +314,21 @@ async function addAssignedContact(i, color, contactsNumber) {
  */
 async function addFilteredAssignedContact(i, color, contactsNumber) {
   let assignedDropdown = document.getElementById('assignedDropdown');
-  let selectedContact = filteredContacts[i]['name'];
+  let selectedContact;
+  for (let i = 0; i < contacts.length; i++) {
+    if (contactsNumber == contacts[i]['nr']) {
+      selectedContact = contacts[i];
+      break;
+    }
+  }
+  let selectedContactName = filteredContacts[i]['name'];
+  let selectedContactNr = selectedContact['nr'];
   let checkboxImage = document.getElementById(`checkBox-${i}`);
   let userID = document.getElementById(`user-${i}`);
 
-  addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContact, color);
-  await setIsChoosenValue(contactsNumber);
+  addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContactNr, selectedContactName, color, i);
+  // await setIsChoosenValue(contactsNumber);
+  await setIsChoosenValue(selectedContact);
   await renderSelectedContacts(i);
 }
 
@@ -323,23 +341,31 @@ async function addFilteredAssignedContact(i, color, contactsNumber) {
  * @param {string} selectedContact - The selected contact.
  * @param {string} color - The color of the selected contact.
  */
-function addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContact, color) {
-  const index = selectedContacts.findIndex((contact) => contact.name === selectedContact && contact.color === color);
-  if (!checkIfSelectedContactExist(selectedContact, color)) {
+function addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContactNr, selectedContactName, color, i) {
+  const index = selectedContacts.findIndex((contact) => contact.name === selectedContactName && contact.color === color);
+  if (!checkIfSelectedContactExist(selectedContactName, color)) {
     assignedDropdown.classList.toggle('addTask-selected');
-    if (!selectedContacts.includes(selectedContact)) {
+    if (!selectedContacts.includes(selectedContactName)) {
       if (index === -1) {
         selectedContacts.push({
-          name: selectedContact,
+          name: selectedContactName,
           color: color,
-          selectedContactsId: selectedContacts.length,
+          // selectedContactsId: selectedContacts.length,
+          selectedContactsId: selectedContactNr,
         });
       }
     }
     checkboxImage.src = './assets/img/icons/check_button-white.svg';
     userID.classList.add('selected-profile-active-item');
   } else {
-    removeSelectedContact(selectedContacts[index].selectedContactsId);
+    // removeSelectedContact(selectedContacts[index].selectedContactsId);
+    let newSelectedContact= {
+      name: selectedContactName,
+      color: color,
+      // selectedContactsId: selectedContacts.length,
+      selectedContactsId: selectedContactNr,
+    };
+    removeSelectedContact(newSelectedContact, i);
   }
 }
 
@@ -381,15 +407,15 @@ function checkIfSelectedContactExist(selectedContact, color) {
  *
  * @param {number} i - The index of the currently selected contact.
  */
-function renderSelectedContacts() {
+async function renderSelectedContacts(j) {
   let content = document.getElementById('assignedAddedContact');
   content.innerHTML = '';
-
+  
   for (let j = 0; j < selectedContacts.length; j++) {
+    console.log('renderSelectedContacts selectedContacts:', selectedContacts[j]['name'])
     let contact = selectedContacts[j];
     let initials = getInitials(selectedContacts[j]['name']);
     let color = contact['color'];
-
     content.innerHTML += renderSelectedContactsHtml(j, initials, color);
   }
 }
