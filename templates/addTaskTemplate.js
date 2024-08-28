@@ -226,10 +226,12 @@ function showTaskFormHtml() {
  * @param {boolean} isChoosen - Indicates if the contact is chosen.
  * @returns {string} The HTML content for displaying assigned contacts.
  */
+
+
 function assignedToUserHtml(i, color, currentUser, initials, contactNumber) {
   return /*html*/ `
-    <div id="user-${i}" class="flex-checkbox selected-profile" onclick="addAssignedContact('${i}', '${color}', ${contactNumber})" data-value="${currentUser}">
-      <div class="selected-profile">
+  <div id="user-${i}" class="flex-checkbox selected-profile" onclick="addAssignedContact('${i}', '${color}', ${contactNumber})" data-value="${currentUser}">
+    <div class="selected-profile">
         <div class="assinged-contact-profile" style="background-color:${color}">${initials}</div>
         <span class="assigned-name">${currentUser}</span>
       </div>

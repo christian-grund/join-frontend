@@ -79,6 +79,7 @@ async function showTaskForm(id) {
   assignedTo.innerHTML = showTaskFormHtml();
   sortContactsByAlphabet();
 
+
   for (let i = 0; i < contacts.length; i++) {
     let currentUser = contacts[i]['name'];
     let initials = getInitials(currentUser);
@@ -287,9 +288,9 @@ function closeDropDownCategory(event) {
 async function addAssignedContact(i, color, contactsNumber) {
   let assignedDropdown = document.getElementById('assignedDropdown');
   let selectedContact;
-  for (let i = 0; i < contacts.length; i++) {
-    if (contactsNumber == contacts[i]['nr']) {
-      selectedContact = contacts[i];
+  for (let j = 0; i < contacts.length; j++) {
+    if (contactsNumber == contacts[j]['nr']) {
+      selectedContact = contacts[j];
       break;
     }
   }
@@ -363,7 +364,8 @@ function addSelectedContact(assignedDropdown, checkboxImage, userID, selectedCon
       name: selectedContactName,
       color: color,
       // selectedContactsId: selectedContacts.length,
-      selectedContactsId: selectedContactNr,
+      // selectedContactsId: selectedContactNr,
+      selectedContactsId: i,
     };
     removeSelectedContact(newSelectedContact, i);
   }

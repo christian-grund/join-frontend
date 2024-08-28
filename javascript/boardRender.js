@@ -15,13 +15,15 @@ async function initBoard() {
   setUserToContacts();
   setColorToActive('sidebarBoard', 'board-img', 'bottomBarBoardMobile', 'boardImgMobile');
   checkTaskAreaDisplayEmpty();
-  setNumberOnContacts();
+  await setUsernameInContacts();
+  await setNumberOnContacts();
   await resetIsChoosenValue();
   setupEnterKeyListener();
-  setUsernameInContacts();
   setColorToContacts();
   await setColorsToSelectedContacts();
   renderBoardTasks();
+  contacts = await getItemWithAuth('contacts');
+  // console.log('contacts:', contacts);
 }
 
 /**

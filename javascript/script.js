@@ -163,6 +163,7 @@ async function setUsernameInContacts() {
     await setColorToContacts();
     await setItemWithAuth('contacts', currentContact);
     contacts = await getItemWithAuth('contacts');
+    console.log('setUsernameInContacts', contacts);
   }
 }
 
@@ -226,6 +227,8 @@ function classlistRemoveAndAdd(id, remove, add) {
  * @function
  */
 async function setNumberOnContacts() {
+  contacts = await getItemWithAuth('contacts');
+  console.log('setNumberOnContacts contacts:', contacts)
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     contact['nr'] = i;

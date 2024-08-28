@@ -24,7 +24,7 @@ async function init() {
     "bottomBarAddTaskMobile",
     "addTaskImgMobile"
   );
-  await resetIsChoosenValue();
+  
   await renderAddTask();
   await renderSubTaskAddTask();
   await showTaskForm("assignedTo");
@@ -32,7 +32,10 @@ async function init() {
   setMinDateToday("myDateInput");
   await setUsernameInContacts();
   await setNumberOnContacts();
+  await resetIsChoosenValue();
   setColorsToSelectedContacts();
+  contacts = await getItemWithAuth('contacts');
+  // console.log('contacts:', contacts);
 }
 
 /**

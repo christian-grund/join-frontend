@@ -11,7 +11,7 @@ async function init() {
   setUserInitials();
   setUserToContacts();
   setColorToContacts();
-  setUsernameInContacts();
+  await setUsernameInContacts();
   renderContacts();
   setColorToActive('sidebarContacts', 'contacts-img', 'bottomBarContactsMobile', 'contactsImgMobile');
 }
