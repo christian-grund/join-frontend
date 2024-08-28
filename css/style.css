@@ -3061,8 +3061,10 @@ form {
 
 .overflowYActive {
   padding: 0px 10px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .overflowYActive::-webkit-scrollbar {
@@ -3070,7 +3072,6 @@ form {
 }
 
 .heightContainerMax {
-  height: calc(40% + 221px);
   overflow-y: scroll;
   overflow-x: hidden;
 }

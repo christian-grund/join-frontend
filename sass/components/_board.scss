@@ -42,6 +42,8 @@
   padding: 0px 10px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .overflowYActive::-webkit-scrollbar {
@@ -49,7 +51,6 @@
 }
 
 .heightContainerMax {
-  height: calc(40% + 221px);
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -88,7 +88,6 @@ function checkMatchPassword() {
 /**
  * Loads user data upon login.
  * Redirects to the summary page if login is successful.
- * @async
  */
 async function loadUser() {
   let email = document.getElementById("email").value;
@@ -167,9 +166,26 @@ async function logInGuest() {
   let passwordfield = document.getElementById("password");
   emailfield.value = email;
   passwordfield.value = password;
-  await loadUser();
+  await loadLogInGuest(email, password);
   if (searchForEmail(email, password)) {
     window.location.href = "./summary.html";
+  }
+}
+
+async function loadLogInGuest(email, password) {
+  let response = await fetch('http://localhost:8000/api/login/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  if (response.ok) {
+    let data = await response.json();
+    localStorage.setItem('authToken', data.token); 
+  } else {
+    console.error('Guest login failed');
   }
 }
 
