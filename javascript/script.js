@@ -64,26 +64,15 @@ function setUserInitials() {
 
   let acronym = getFirstLetters(users[x]['username']);
   let content = document.getElementById('topbar-user');
+  let contentMobile = document.getElementById('topbarUserMobile');
   content.innerHTML = '';
   content.innerHTML = /*html*/ `
     <p>${acronym}</p>
   `;
-}
-
-/**
- * Adds the user to contacts if not already present.
- * @function
- */
-async function setUserToContacts() {
-  let name = users[user].username;
-  let mail = users[user].email;
-  let userExistsIndex = contacts.findIndex((contact) => contact.name === name);
-  let nr = contacts.length;
-
-  // if (userExistsIndex === -1) {
-  //   contacts.push({ name: firstLettersUppercase(name), mail: mail, phone: '', color: '', nr: nr });
-  //   userExistsIndex = contacts.length - 1;
-  // }
+  contentMobile.innerHTML = '';
+  contentMobile.innerHTML = /*html*/ `
+    <p>${acronym}</p>
+  `;
 }
 
 /**
@@ -163,11 +152,14 @@ async function setUsernameInContacts() {
     await setColorToContacts();
     await setItemWithAuth('contacts', currentContact);
     contacts = await getItemWithAuth('contacts');
-    console.log('setUsernameInContacts', contacts);
   }
 }
 
-
+/**
+ * Checks if a user exists in the `users` array based on the username.
+ * 
+ * @returns {Object|undefined} The user object if found, otherwise undefined.
+ */
 function checkForUser() {
   for (let i = 0; i < users.length; i++) {
     let currentUser = users[i];
@@ -228,7 +220,6 @@ function classlistRemoveAndAdd(id, remove, add) {
  */
 async function setNumberOnContacts() {
   contacts = await getItemWithAuth('contacts');
-  console.log('setNumberOnContacts contacts:', contacts)
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
     contact['nr'] = i;
@@ -263,28 +254,39 @@ function sortContactsByAlphabet() {
  * Converts the contacts array to JSON and saves it to the storage.
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
-async function saveContacts() {
-  await setItem('contacts', JSON.stringify(contacts));
-}
-
 async function saveContact(i) {
   let contact = contacts[i];
   await patchItemWithAuth('contacts', contact.id, contact)
 }
 
+/**
+ * Save the contacts array to the storage.
+ * Converts the contacts array to JSON and saves it to the storage.
+ * @returns {Promise<void>} A promise that resolves when the contacts are saved.
+ */
 function saveToken(token) {
   localStorage.setItem('authToken', token);
 }
 
+/**
+ * Save the contacts array to the storage.
+ * Converts the contacts array to JSON and saves it to the storage.
+ * @returns {Promise<void>} A promise that resolves when the contacts are saved.
+ */
 function getToken() {
   let authToken = localStorage.getItem('authToken');
   return authToken;
 }
 
+/**
+ * Save the contacts array to the storage.
+ * Converts the contacts array to JSON and saves it to the storage.
+ * @returns {Promise<void>} A promise that resolves when the contacts are saved.
+ */
 function logout() {
   fetch('http://localhost:8000/api/logout/', {
       method: 'POST',
-      credentials: 'include' // Wichtig für Session-basiertes Logout
+      credentials: 'include' 
   })
   .then(response => {
       if (!response.ok) {
@@ -294,15 +296,15 @@ function logout() {
   .catch(error => console.error('Error:', error));
 }
 
+/**
+ * Updates the colors of selected contacts in tasks based on the current contact data.
+ * 
+ * @returns {Promise<void>} A promise that resolves when all tasks have been checked and updated if necessary.
+ */
 async function setColorsToSelectedContacts() {
-  // Durchlaufe alle Tasks
   for (const task of tasks) {
-      // Flag to check if we need to patch
       let shouldPatch = false;
-
-      // Durchlaufe alle selectedContacts im aktuellen Task
       task.selectedContacts.forEach(selectedContact => {
-          // Finde die Farbe des Kontakts
           contacts.forEach(contact => {
               if (contact.name === selectedContact.name && selectedContact.color !== contact.color) {
                   selectedContact.color = contact.color;
@@ -310,8 +312,6 @@ async function setColorsToSelectedContacts() {
               }
           });
       });
-
-      // Wenn wir die Farben aktualisieren, dann patch den Task
       if (shouldPatch) {
           const updatedSelectedContacts = [];
           task.selectedContacts.forEach(contact => {

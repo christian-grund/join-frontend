@@ -358,16 +358,6 @@ function renderSelectedContactsEdit(i) {
   }
 }
 
-// /**
-//  * Remove a selected contact from a task.
-//  * @param {number} i - The index of the task.
-//  * @param {number} j - The index of the selected contact.
-//  */
-// function removeSelectedContact(i, j) {
-//   selectedContacts.splice(j, 1);
-//   renderSelectedContactsEdit(i);
-// }
-
 /**
  * Populate the assigned dropdown menu with contacts.
  */

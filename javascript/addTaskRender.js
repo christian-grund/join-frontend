@@ -233,7 +233,9 @@ function closeDropDown() {
   }
 }
 
-// Function to close the dropdown menu with if
+/**
+ * Function to close the dropdown menu
+ */
 document.addEventListener('DOMContentLoaded', function () {
   document.body.addEventListener('click', function (event) {
     if (
@@ -250,7 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Function for openDropDownCategory
+/**
+ * Function for openDropDownCategory
+ */
 function openDropDownCategory() {
   let assignedDropdownCategory = document.getElementById('assignedDropdownCategory');
   let dropdownImgArrowCategory = document.getElementById('dropdownImgArrowCategory');
@@ -266,7 +270,9 @@ function openDropDownCategory() {
   }
 }
 
-// Function for closing DropDownCategory
+/**
+ * Function for closing DropDownCategory
+ */
 function closeDropDownCategory(event) {
   let assignedDropdownCategory = document.getElementById('assignedDropdownCategory');
   let dropdownImgArrowCategory = document.getElementById('dropdownImgArrowCategory');
@@ -301,7 +307,6 @@ async function addAssignedContact(i, color, contactsNumber) {
 
   addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContactNr, selectedContactName, color, i);
   await setIsChoosenValue(selectedContact);
-  // await setIsChoosenValue(i);
   await renderSelectedContacts(i);
 }
 
@@ -328,7 +333,6 @@ async function addFilteredAssignedContact(i, color, contactsNumber) {
   let userID = document.getElementById(`user-${i}`);
 
   addSelectedContact(assignedDropdown, checkboxImage, userID, selectedContactNr, selectedContactName, color, i);
-  // await setIsChoosenValue(contactsNumber);
   await setIsChoosenValue(selectedContact);
   await renderSelectedContacts(i);
 }
@@ -351,7 +355,6 @@ function addSelectedContact(assignedDropdown, checkboxImage, userID, selectedCon
         selectedContacts.push({
           name: selectedContactName,
           color: color,
-          // selectedContactsId: selectedContacts.length,
           selectedContactsId: selectedContactNr,
         });
       }
@@ -359,12 +362,9 @@ function addSelectedContact(assignedDropdown, checkboxImage, userID, selectedCon
     checkboxImage.src = './assets/img/icons/check_button-white.svg';
     userID.classList.add('selected-profile-active-item');
   } else {
-    // removeSelectedContact(selectedContacts[index].selectedContactsId);
     let newSelectedContact= {
       name: selectedContactName,
       color: color,
-      // selectedContactsId: selectedContacts.length,
-      // selectedContactsId: selectedContactNr,
       selectedContactsId: i,
     };
     removeSelectedContact(newSelectedContact, i);
@@ -414,7 +414,6 @@ async function renderSelectedContacts(j) {
   content.innerHTML = '';
   
   for (let j = 0; j < selectedContacts.length; j++) {
-    console.log('renderSelectedContacts selectedContacts:', selectedContacts[j]['name'])
     let contact = selectedContacts[j];
     let initials = getInitials(selectedContacts[j]['name']);
     let color = contact['color'];

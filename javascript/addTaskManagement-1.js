@@ -16,7 +16,6 @@ async function init() {
   await loadData();
   await loadUser();
   setUserInitials();
-  setUserToContacts();
   setColorToContacts();
   setColorToActive(
     "sidebarAddTask",
@@ -125,11 +124,8 @@ async function addTaskValues(
     currentState: column,
   }
   tasks.push(task);
-  console.log('tasks before:', tasks);
   await setItemWithAuth("tasks", task);
   tasks = await getItemWithAuth('tasks');
-  console.log('tasks after:', tasks);
-
 }
 
 /**
@@ -268,48 +264,6 @@ function selectCategory(category, id) {
   checkIfFormIsFilled(id);
 }
 
-/**
- * Selects a category for the task.
- *
- * @param {string} category - The category selected for the task.
- * @param {HTMLElement} userStory - The user story category element.
- * @param {HTMLElement} technicalTask - The technical task category element.
- * @param {HTMLElement} showSelectedCategory - The element displaying the selected category.
- * @param {HTMLElement} assignedDropdownCategory - The dropdown category element.
- */
-function selectCategoryIfElse(
-  userStory,
-  technicalTask,
-  showSelectedCategory,
-  assignedDropdownCategory,
-  category
-) {
-  if (category === "user-story" || category === "User Story") {
-    selectUserStory(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
-  } else if (category === "technical-task" || category === "Technical Task") {
-    selectTechnicalTask(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
-  } else {
-    selectDefaultCategory(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
-  }
-}
 
 /**
  * Selects the user story category.
@@ -366,39 +320,16 @@ function selectTechnicalTask(
  * @param {HTMLElement} showSelectedCategory - The element displaying the selected category.
  * @param {HTMLElement} assignedDropdownCategory - The dropdown category element.
  */
-function selectCategoryIfElse(
-  userStory,
-  technicalTask,
-  showSelectedCategory,
-  assignedDropdownCategory,
-  category
-) {
+function selectCategoryIfElse(userStory, technicalTask, showSelectedCategory, assignedDropdownCategory, category) {
   if (category === "user-story" || category === "User Story") {
-    selectUserStory(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
+    selectUserStory(userStory, technicalTask, showSelectedCategory, assignedDropdownCategory, category);
   } else if (category === "technical-task" || category === "Technical Task") {
-    selectTechnicalTask(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
+    selectTechnicalTask(userStory, technicalTask, showSelectedCategory, assignedDropdownCategory, category);
   } else {
-    selectDefaultCategory(
-      userStory,
-      technicalTask,
-      showSelectedCategory,
-      assignedDropdownCategory,
-      category
-    );
+    selectDefaultCategory(userStory, technicalTask, showSelectedCategory, assignedDropdownCategory, category);
   }
 }
+
 
 /**
  * Deletes a subtask from the list of subtasks.
@@ -427,11 +358,7 @@ function deleteSubTask(number, idContainer) {
  * @param {string} color - The color of the selected contact.
  */
 function removeSelectedContact(selectedContact, i) {
-  // let selectedContactsIndex = selectedContacts.findIndex(
-  //   (contact) => contact.selectedContactsId === selectedContact);
-  console.log('newSelectedContact:', selectedContact);
   let selectedContactsIndex = selectedContact['selectedContactsId'];
-  console.log('selectedContactsIndex:', selectedContactsIndex);
   let usedColor = selectedContact.color;
   let selectedContactsName = selectedContact.name;
   let index = selectedContacts.findIndex(

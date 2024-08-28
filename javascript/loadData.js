@@ -24,6 +24,11 @@ async function loadData() {
   }
 }
 
+/**
+ * Fetches the current user's data from the API.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the fetch operation completes.
+ */
 async function fetchUserData() {
   const token = localStorage.getItem('authToken');
   const response = await fetch('http://localhost:8000/api/current_user/', {
@@ -40,24 +45,13 @@ async function fetchUserData() {
 }
 
 /**
- * Sets an item in the storage.
- * @param {string} key - The key of the item to set.
- * @param {any} value - The value of the item to set.
- * @returns {Promise<any>} - A promise that resolves with the result of the operation.
+ * Sends a POST request with authorization to a specified API path.
+ *
+ * @param {string} [path=''] - The API endpoint path.
+ * @param {Object} [value={}] - The data to send in the request body.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the request completes.
  */
-async function setItem(path = '', value = {}) {
-  let response = await fetch(STORAGE_URL + path + '.json', {
-    method: 'PUT',
-    header: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(value),
-  });
-}
-
-
-
-
 async function setItemWithAuth(path = '', value = {}) {
   const token = localStorage.getItem('authToken');  
 
@@ -76,6 +70,14 @@ async function setItemWithAuth(path = '', value = {}) {
   } 
 }
 
+/**
+ * Sends a POST request without authorization to a specified API path.
+ * 
+ * @param {string} [path=''] - The API endpoint path.
+ * @param {Object} [value={}] - The data to send in the request body.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the request completes.
+ */
 async function setItemNoAuth(path = '', value = {}) {
   const response = await fetch(`http://localhost:8000/${path}/`, {
     method: 'POST',
@@ -90,16 +92,12 @@ async function setItemNoAuth(path = '', value = {}) {
   } 
 }
 
-async function deleteItem(path, id) {
-  const response = await fetch(`http://localhost:8000/${path}/${id}/`, {
-    method: 'DELETE',
-  });
-
-  if (!response.ok) {
-    console.error(`Failed to delete ${path.slice(0, -1)} with ID ${id}:`, response.status);
-  }
-}
-
+/**
+ * Sends a DELETE request with authorization to remove an item by ID.
+ *  
+ * @param {string} path - The API endpoint path.
+ * @param {number|string} id - The ID of the item to delete.
+ */
 async function deleteItemWithAuth(path, id) {
   const token = localStorage.getItem('authToken');
   
@@ -116,6 +114,15 @@ async function deleteItemWithAuth(path, id) {
   }
 }
 
+/**
+ * Sends a PATCH request with authorization to update an item by ID.
+ * 
+ * @param {string} path - The API endpoint path.
+ * @param {number|string} id - The ID of the item to update.
+ * @param {Object} data - The data to update in the item.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the request completes.
+ */
 async function patchItemWithAuth(path, id, data) {
   const token = localStorage.getItem('authToken');  
 
@@ -163,6 +170,13 @@ async function getItemBE(path) {
   }
 }
 
+/**
+ * Sends a GET request with authorization to retrieve data from a specified API path.
+ * 
+ * @param {string} path - The API endpoint path.
+ * 
+ * @returns {Promise<Object|null>} A promise that resolves to the fetched data, or null if the request fails.
+ */
 async function getItemWithAuth(path) {
   const token = localStorage.getItem('authToken');  
 

@@ -9,7 +9,6 @@ async function init() {
   await loadData();
   await loadUser();
   setUserInitials();
-  setUserToContacts();
   setColorToContacts();
   await setUsernameInContacts();
   renderContacts();
@@ -106,7 +105,6 @@ async function addContact(target, id) {
     phone: tel.value,
     color: '',
     isChoosen: false,
-    // nr: null,
   }
   contacts.push(contact);  
   await processContactAddition(target, id, name, mail, tel, contact);

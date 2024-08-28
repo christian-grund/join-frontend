@@ -94,18 +94,17 @@ async function loadUser() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  // Anfrage an das Backend für die Authentifizierung senden
   const response = await fetch('http://localhost:8000/api/login/', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password })  // E-Mail und Passwort senden
+      body: JSON.stringify({ email, password })  
   });
 
   if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('authToken', data.token);  // Token speichern
+      localStorage.setItem('authToken', data.token); 
       await rememberMe();
       await setUser(email);
       window.location.href = "./summary.html";
@@ -169,9 +168,6 @@ async function logInGuest() {
   emailfield.value = email;
   passwordfield.value = password;
   await loadUser();
-  // user.push("2");
-  // let userAsText = JSON.stringify(user);
-  // localStorage.setItem("user", userAsText);
   if (searchForEmail(email, password)) {
     window.location.href = "./summary.html";
   }

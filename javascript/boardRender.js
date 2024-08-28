@@ -12,7 +12,6 @@ async function initBoard() {
   await updateHTML();
   await includeHTML();
   setUserInitials();
-  setUserToContacts();
   setColorToActive('sidebarBoard', 'board-img', 'bottomBarBoardMobile', 'boardImgMobile');
   checkTaskAreaDisplayEmpty();
   await setUsernameInContacts();

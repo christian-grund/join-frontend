@@ -39,7 +39,6 @@ function setContactsToFirstLetters(letter) {
       }
     }
   }
-  // saveContacts();
 }
 
 
