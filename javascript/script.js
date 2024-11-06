@@ -1,10 +1,10 @@
-const STORAGE_URL = 'https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/';
-const LOCALHOST_URL = 'http://localhost:8000/'
+const STORAGE_URL = "https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/";
+const LOCALHOST_URL = "http://localhost:8000/";
 
 let user = [];
 let users = [];
 let contacts = [];
-let contactColors = ['#FF7A00', '#9327FF', '#6E52FF', '#FC71FF', '#FFBB2B', '#1FD7C1', '#462F8A', '#FF4646'];
+let contactColors = ["#FF7A00", "#9327FF", "#6E52FF", "#FC71FF", "#FFBB2B", "#1FD7C1", "#462F8A", "#FF4646"];
 let legalNoticeOffline = true;
 let privacyPolicyOffline = true;
 
@@ -14,17 +14,17 @@ let privacyPolicyOffline = true;
  *
  */
 async function includeHTML() {
-  let includeElements = document.querySelectorAll('[w3-include-html]');
-  for (let i = 0; i < includeElements.length; i++) {
-    const element = includeElements[i];
-    file = element.getAttribute('w3-include-html');
-    let resp = await fetch(file);
-    if (resp.ok) {
-      element.innerHTML = await resp.text();
-    } else {
-      element.innerHTML = 'Page not found';
-    }
-  }
+	let includeElements = document.querySelectorAll("[w3-include-html]");
+	for (let i = 0; i < includeElements.length; i++) {
+		const element = includeElements[i];
+		file = element.getAttribute("w3-include-html");
+		let resp = await fetch(file);
+		if (resp.ok) {
+			element.innerHTML = await resp.text();
+		} else {
+			element.innerHTML = "Page not found";
+		}
+	}
 }
 
 /**
@@ -36,14 +36,14 @@ async function includeHTML() {
  * @param {string} id4 - The ID of the fourth element.
  */
 function setColorToActive(id1, id2, id3, id4) {
-  let textSidebar = document.getElementById(id1);
-  textSidebar.classList.add('active');
-  let imageSidebar = document.getElementById(id2);
-  imageSidebar.classList.add('filter-white');
-  let textBottombar = document.getElementById(id3);
-  textBottombar.classList.add('active');
-  let imageBottombar = document.getElementById(id4);
-  imageBottombar.classList.add('filter-white');
+	let textSidebar = document.getElementById(id1);
+	textSidebar.classList.add("active");
+	let imageSidebar = document.getElementById(id2);
+	imageSidebar.classList.add("filter-white");
+	let textBottombar = document.getElementById(id3);
+	textBottombar.classList.add("active");
+	let imageBottombar = document.getElementById(id4);
+	imageBottombar.classList.add("filter-white");
 }
 
 /**
@@ -51,8 +51,8 @@ function setColorToActive(id1, id2, id3, id4) {
  * @function
  */
 function showTopbarDropdown() {
-  document.getElementById('topbar-dropdown').classList.toggle('d-flex');
-  document.getElementById('topbar-dropdown').classList.toggle('show-overlay-menu');
+	document.getElementById("topbar-dropdown").classList.toggle("d-flex");
+	document.getElementById("topbar-dropdown").classList.toggle("show-overlay-menu");
 }
 
 /**
@@ -60,17 +60,17 @@ function showTopbarDropdown() {
  * @function
  */
 function setUserInitials() {
-  let x = user;
+	let x = user;
 
-  let acronym = getFirstLetters(users[x]['username']);
-  let content = document.getElementById('topbar-user');
-  let contentMobile = document.getElementById('topbarUserMobile');
-  content.innerHTML = '';
-  content.innerHTML = /*html*/ `
+	let acronym = getFirstLetters(users[x]["username"]);
+	let content = document.getElementById("topbar-user");
+	let contentMobile = document.getElementById("topbarUserMobile");
+	content.innerHTML = "";
+	content.innerHTML = /*html*/ `
     <p>${acronym}</p>
   `;
-  contentMobile.innerHTML = '';
-  contentMobile.innerHTML = /*html*/ `
+	contentMobile.innerHTML = "";
+	contentMobile.innerHTML = /*html*/ `
     <p>${acronym}</p>
   `;
 }
@@ -82,12 +82,12 @@ function setUserInitials() {
  * @function
  */
 function firstLettersUppercase(str) {
-  let splitStr = '';
-  splitStr = str.toLowerCase().split(' ');
-  for (let i = 0; i < splitStr.length; i++) {
-    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-  }
-  return splitStr.join(' ');
+	let splitStr = "";
+	splitStr = str.toLowerCase().split(" ");
+	for (let i = 0; i < splitStr.length; i++) {
+		splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+	}
+	return splitStr.join(" ");
 }
 
 /**
@@ -97,7 +97,7 @@ function firstLettersUppercase(str) {
  * @function
  */
 function getFirstLetters(str) {
-  return str.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), '');
+	return str.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), "");
 }
 
 /**
@@ -106,11 +106,11 @@ function getFirstLetters(str) {
  * @function
  */
 function setMenuColorToActive(id) {
-  let container = document.getElementById(id);
-  container.classList.add('active');
-  container.classList.add('inactiveNote');
-  container.classList.remove('noteLink');
-  container.style.hoverColor = '#cdcdcd';
+	let container = document.getElementById(id);
+	container.classList.add("active");
+	container.classList.add("inactiveNote");
+	container.classList.remove("noteLink");
+	container.style.hoverColor = "#cdcdcd";
 }
 
 /**
@@ -119,12 +119,12 @@ function setMenuColorToActive(id) {
  * @function
  */
 function checkForUserName() {
-  for (let i = 0; i < users.length; i++) {
-    let userName = users[i]['username'];
-    if (userName === users[user]['username']) {
-      return userName;
-    }
-  }
+	for (let i = 0; i < users.length; i++) {
+		let userName = users[i]["username"];
+		if (userName === users[user]["username"]) {
+			return userName;
+		}
+	}
 }
 
 /**
@@ -133,44 +133,42 @@ function checkForUserName() {
  * @param {string} userName - The username to be added to contacts.
  */
 async function setUsernameInContacts() {
-  let currentUser = checkForUser();
-  let userName = currentUser['username'];
-  
-  let userWithYou = userName + ' (you)';
-  let userWithYouExistsIndex = contacts.findIndex((contact) => contact.name === userWithYou);
+	let currentUser = checkForUser();
+	let userName = currentUser["username"];
 
-  if (userWithYouExistsIndex === -1) {
-    let currentContact = {
-      name: userWithYou,
-      mail: currentUser['email'],
-      phone: '',
-      nr: '',
-      id: '',
-      isChoosen: false,
-    }
-    contacts.push(currentContact);
-    await setColorToContacts();
-    await setItemWithAuth('contacts', currentContact);
-    contacts = await getItemWithAuth('contacts');
-  }
+	let userWithYou = userName + " (you)";
+	let userWithYouExistsIndex = contacts.findIndex((contact) => contact.name === userWithYou);
+
+	if (userWithYouExistsIndex === -1) {
+		let currentContact = {
+			name: userWithYou,
+			mail: currentUser["email"],
+			phone: "",
+			nr: "",
+			id: "",
+			isChoosen: false,
+		};
+		contacts.push(currentContact);
+		await setColorToContacts();
+		await setItemWithAuth("contacts", currentContact);
+		contacts = await getItemWithAuth("contacts");
+	}
 }
 
 /**
  * Checks if a user exists in the `users` array based on the username.
- * 
+ *
  * @returns {Object|undefined} The user object if found, otherwise undefined.
  */
 function checkForUser() {
-  for (let i = 0; i < users.length; i++) {
-    let currentUser = users[i];
-    let userName = users[i]['username'];
-    if (userName === users[user]['username']) {
-      return currentUser;
-    }
-  }
+	for (let i = 0; i < users.length; i++) {
+		let currentUser = users[i];
+		let userName = users[i]["username"];
+		if (userName === users[user]["username"]) {
+			return currentUser;
+		}
+	}
 }
-
-
 
 /**
  * Toggles CSS classes on an element.
@@ -179,7 +177,7 @@ function checkForUser() {
  * @function
  */
 function classlistToggle(id, toggle) {
-  document.getElementById(id).classList.toggle(toggle);
+	document.getElementById(id).classList.toggle(toggle);
 }
 
 /**
@@ -189,7 +187,7 @@ function classlistToggle(id, toggle) {
  * @function
  */
 function classlistAdd(id, add) {
-  document.getElementById(id).classList.add(add);
+	document.getElementById(id).classList.add(add);
 }
 
 /**
@@ -199,7 +197,7 @@ function classlistAdd(id, add) {
  * @function
  */
 function classlistRemove(id, remove) {
-  document.getElementById(id).classList.remove(remove);
+	document.getElementById(id).classList.remove(remove);
 }
 
 /**
@@ -210,8 +208,8 @@ function classlistRemove(id, remove) {
  * @function
  */
 function classlistRemoveAndAdd(id, remove, add) {
-  document.getElementById(id).classList.remove(remove);
-  document.getElementById(id).classList.add(add);
+	document.getElementById(id).classList.remove(remove);
+	document.getElementById(id).classList.add(add);
 }
 
 /**
@@ -219,13 +217,13 @@ function classlistRemoveAndAdd(id, remove, add) {
  * @function
  */
 async function setNumberOnContacts() {
-  contacts = await getItemWithAuth('contacts');
-  for (let i = 0; i < contacts.length; i++) {
-    let contact = contacts[i];
-    contact['nr'] = i;
-    let contactNr = {nr: i};
-    patchItemWithAuth('contacts', contact.id, contactNr)
-  }
+	contacts = await getItemWithAuth("contacts");
+	for (let i = 0; i < contacts.length; i++) {
+		let contact = contacts[i];
+		contact["nr"] = i;
+		let contactNr = { nr: i };
+		patchItemWithAuth("contacts", contact.id, contactNr);
+	}
 }
 
 /**
@@ -234,10 +232,10 @@ async function setNumberOnContacts() {
  * @returns {void}
  */
 async function setColorToContacts() {
-  for (let i = 0; i < contacts.length; i++) {
-    let colorIndex = i % contactColors.length;
-    contacts[i].color = contactColors[colorIndex];
-  }
+	for (let i = 0; i < contacts.length; i++) {
+		let colorIndex = i % contactColors.length;
+		contacts[i].color = contactColors[colorIndex];
+	}
 }
 
 /**
@@ -246,7 +244,7 @@ async function setColorToContacts() {
  * @returns {Array} The sorted contacts array.
  */
 function sortContactsByAlphabet() {
-  return contacts.sort((a, b) => a.name.localeCompare(b.name));
+	return contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
@@ -255,8 +253,8 @@ function sortContactsByAlphabet() {
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
 async function saveContact(i) {
-  let contact = contacts[i];
-  await patchItemWithAuth('contacts', contact.id, contact)
+	let contact = contacts[i];
+	await patchItemWithAuth("contacts", contact.id, contact);
 }
 
 /**
@@ -265,7 +263,7 @@ async function saveContact(i) {
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
 function saveToken(token) {
-  localStorage.setItem('authToken', token);
+	localStorage.setItem("authToken", token);
 }
 
 /**
@@ -274,8 +272,8 @@ function saveToken(token) {
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
 function getToken() {
-  let authToken = localStorage.getItem('authToken');
-  return authToken;
+	let authToken = localStorage.getItem("authToken");
+	return authToken;
 }
 
 /**
@@ -284,44 +282,44 @@ function getToken() {
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
 function logout() {
-  fetch('http://localhost:8000/api/logout/', {
-      method: 'POST',
-      credentials: 'include' 
-  })
-  .then(response => {
-      if (!response.ok) {
-        console.error('Logout failed');
-      }
-  })
-  .catch(error => console.error('Error:', error));
+	fetch("http://localhost:8001/api/logout/", {
+		method: "POST",
+		credentials: "include",
+	})
+		.then((response) => {
+			if (!response.ok) {
+				console.error("Logout failed");
+			}
+		})
+		.catch((error) => console.error("Error:", error));
 }
 
 /**
  * Updates the colors of selected contacts in tasks based on the current contact data.
- * 
+ *
  * @returns {Promise<void>} A promise that resolves when all tasks have been checked and updated if necessary.
  */
 async function setColorsToSelectedContacts() {
-  for (const task of tasks) {
-      let shouldPatch = false;
-      task.selectedContacts.forEach(selectedContact => {
-          contacts.forEach(contact => {
-              if (contact.name === selectedContact.name && selectedContact.color !== contact.color) {
-                  selectedContact.color = contact.color;
-                  shouldPatch = true;
-              }
-          });
-      });
-      if (shouldPatch) {
-          const updatedSelectedContacts = [];
-          task.selectedContacts.forEach(contact => {
-              updatedSelectedContacts.push({
-                  name: contact.name,
-                  color: contact.color,
-                  selectedContactsId: contact.selectedContactsId
-              });
-          });
-          await patchItemWithAuth('tasks', task.id, { selectedContacts: updatedSelectedContacts });
-      }
-  }
+	for (const task of tasks) {
+		let shouldPatch = false;
+		task.selectedContacts.forEach((selectedContact) => {
+			contacts.forEach((contact) => {
+				if (contact.name === selectedContact.name && selectedContact.color !== contact.color) {
+					selectedContact.color = contact.color;
+					shouldPatch = true;
+				}
+			});
+		});
+		if (shouldPatch) {
+			const updatedSelectedContacts = [];
+			task.selectedContacts.forEach((contact) => {
+				updatedSelectedContacts.push({
+					name: contact.name,
+					color: contact.color,
+					selectedContactsId: contact.selectedContactsId,
+				});
+			});
+			await patchItemWithAuth("tasks", task.id, { selectedContacts: updatedSelectedContacts });
+		}
+	}
 }
