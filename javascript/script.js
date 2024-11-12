@@ -1,5 +1,6 @@
 const STORAGE_URL = "https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/";
-const LOCALHOST_URL = "http://localhost:8000/";
+const LOCALHOST_URL = "http://localhost:8001/";
+const PRODUCTION_URL = "https://join-backend.christian-grund.dev/";
 
 let user = [];
 let users = [];
@@ -231,7 +232,7 @@ async function setNumberOnContacts() {
  * Assigns colors from predefined contactColors array to each contact in contacts list.
  * @returns {void}
  */
-async function setColorToContacts() {
+function setColorToContacts() {
 	for (let i = 0; i < contacts.length; i++) {
 		let colorIndex = i % contactColors.length;
 		contacts[i].color = contactColors[colorIndex];

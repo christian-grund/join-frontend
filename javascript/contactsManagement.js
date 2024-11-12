@@ -6,13 +6,18 @@ let nameToCompare;
  * Loads data, user, sets initials, sets user to contacts, sets color to contacts, renders contacts, and sets active color to UI elements.
  */
 async function init() {
-  await loadData();
-  await loadUser();
-  setUserInitials();
-  setColorToContacts();
-  await setUsernameInContacts();
-  renderContacts();
-  setColorToActive('sidebarContacts', 'contacts-img', 'bottomBarContactsMobile', 'contactsImgMobile');
+	await loadData();
+	if (contacts && contacts.length > 0) {
+		await loadUser();
+		setUserInitials();
+		await setUsernameInContacts();
+		setColorToContacts();
+		renderContacts();
+		setColorToActive("sidebarContacts", "contacts-img", "bottomBarContactsMobile", "contactsImgMobile");
+	} else {
+		console.info("No contacts available or failed to load.");
+		setTimeout(init, 100);
+	}
 }
 
 /**
@@ -20,38 +25,36 @@ async function init() {
  * Generates HTML elements for each contact and renders them in the UI based on the first letter of their name.
  */
 async function renderContacts() {
-  let content = document.getElementById('basic-info-wrapper');
-  content.innerHTML = '';
+	let content = document.getElementById("basic-info-wrapper");
+	content.innerHTML = "";
 
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    const firstLetter = contact.name.charAt(0);
+	for (let i = 0; i < contacts.length; i++) {
+		const contact = contacts[i];
+		const firstLetter = contact.name.charAt(0);
 
-    if (!letters.includes(firstLetter)) {
-      letters.push(firstLetter);
-    }
-  }
-  letters.sort();
-  renderLetters();
+		if (!letters.includes(firstLetter)) {
+			letters.push(firstLetter);
+		}
+	}
+	letters.sort();
+	renderLetters();
 }
-
 
 /**
  * Render the letters for contact list navigation.
  * Generates HTML elements for each unique letter in the contact list and renders them for navigation.
  */
 function renderLetters() {
-  let letterBox = document.getElementById('contact-list-container');
-  letterBox.innerHTML = '';
+	let letterBox = document.getElementById("contact-list-container");
+	letterBox.innerHTML = "";
 
-  for (let i = 0; i < letters.length; i++) {
-    const letter = letters[i];
-    letterBox.innerHTML += generateLettersHTML(letter);
+	for (let i = 0; i < letters.length; i++) {
+		const letter = letters[i];
+		letterBox.innerHTML += generateLettersHTML(letter);
 
-    setContactsToFirstLetters(letter);
-  }
+		setContactsToFirstLetters(letter);
+	}
 }
-
 
 /**
  * Finds the index of a user by contact name.
@@ -59,57 +62,54 @@ function renderLetters() {
  * @returns {number} - The index of the user if found, otherwise -1.
  */
 function findUserIndexByContactName(contactName) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i]['username'] === contactName) {
-      return i;
-    }
-  }
-  return -1;
+	for (let i = 0; i < users.length; i++) {
+		if (users[i]["username"] === contactName) {
+			return i;
+		}
+	}
+	return -1;
 }
-
 
 /**
  * Opens the contact information panel.
  * @param {number} i - The index of the contact.
  */
 async function openContactInfo(i) {
-  let contact = contacts[i];
-  let acronym = getFirstLetters(contact.name);
-  const color = contact.color;
-  let content = document.getElementById('contact-info');
-  classlistRemove('contact-info', 'show-overlay-menu');
-  let username = checkForUserName();
-  content.innerHTML = '';
-  if (contacts[i]['name'] === username) {
-    setTimeout(() => (content.innerHTML += openContactInfoYouHTML(contact, acronym, color, i)), 250);
-  } else {
-    setTimeout(() => (content.innerHTML += openContactInfoHTML(contact, acronym, color, i)), 250);
-  }
-  renderChangesMobile(i);
-  openContactInfoAnimations();
+	let contact = contacts[i];
+	let acronym = getFirstLetters(contact.name);
+	const color = contact.color;
+	let content = document.getElementById("contact-info");
+	classlistRemove("contact-info", "show-overlay-menu");
+	let username = checkForUserName();
+	content.innerHTML = "";
+	if (contacts[i]["name"] === username) {
+		setTimeout(() => (content.innerHTML += openContactInfoYouHTML(contact, acronym, color, i)), 250);
+	} else {
+		setTimeout(() => (content.innerHTML += openContactInfoHTML(contact, acronym, color, i)), 250);
+	}
+	renderChangesMobile(i);
+	openContactInfoAnimations();
 }
-
 
 /**
  * Adds a new contact.
  * @param {string} target - The target of the contact addition.
  */
 async function addContact(target, id) {
-  let name = document.getElementById(`add-name-${target}`);
-  let mail = document.getElementById(`add-mail-${target}`);
-  let tel = document.getElementById(`add-tel-${target}`);
+	let name = document.getElementById(`add-name-${target}`);
+	let mail = document.getElementById(`add-mail-${target}`);
+	let tel = document.getElementById(`add-tel-${target}`);
 
-  let contact = {
-    name: firstLettersUppercase(name.value),
-    mail: mail.value,
-    phone: tel.value,
-    color: '',
-    isChoosen: false,
-  }
-  contacts.push(contact);  
-  await processContactAddition(target, id, name, mail, tel, contact);
+	let contact = {
+		name: firstLettersUppercase(name.value),
+		mail: mail.value,
+		phone: tel.value,
+		color: "",
+		isChoosen: false,
+	};
+	contacts.push(contact);
+	await processContactAddition(target, id, name, mail, tel, contact);
 }
-
 
 /**
  * Processes the addition of a contact.
@@ -119,17 +119,16 @@ async function addContact(target, id) {
  * @param {HTMLInputElement} tel - The input element for the contact phone number.
  */
 async function processContactAddition(target, id, name, mail, tel, contact) {
-  await setColorToContacts();
-  await setItemWithAuth('contacts', contact);
-  await init();
-  let index = findContactIndex(name.value);
-  clearPopup(name, mail, tel);
-  openContactInfo(index);
-  clearPopup(name, mail, tel);
-  await closeContactPopup(target, 'add');
-  setTimeout(() => animateBannerContacts('banner-contact-created', 'banner-contact-created-mobile'), 500);
+	await setColorToContacts();
+	await setItemWithAuth("contacts", contact);
+	await init();
+	let index = findContactIndex(name.value);
+	clearPopup(name, mail, tel);
+	openContactInfo(index);
+	clearPopup(name, mail, tel);
+	await closeContactPopup(target, "add");
+	setTimeout(() => animateBannerContacts("banner-contact-created", "banner-contact-created-mobile"), 500);
 }
-
 
 /**
  * Finds the index of a contact by name.
@@ -137,9 +136,8 @@ async function processContactAddition(target, id, name, mail, tel, contact) {
  * @returns {number} - The index of the contact.
  */
 function findContactIndex(name) {
-  return contacts.findIndex((obj) => obj.name.toLowerCase() === name.toLowerCase());
+	return contacts.findIndex((obj) => obj.name.toLowerCase() === name.toLowerCase());
 }
-
 
 /**
  * Clears the input fields of a popup.
@@ -148,11 +146,10 @@ function findContactIndex(name) {
  * @param {HTMLInputElement} tel - The input element for the contact phone number.
  */
 function clearPopup(name, mail, tel) {
-  name.value = '';
-  mail.value = '';
-  tel.value = '';
+	name.value = "";
+	mail.value = "";
+	tel.value = "";
 }
-
 
 /**
  * Edits a contact.
@@ -160,21 +157,20 @@ function clearPopup(name, mail, tel) {
  * @param {string} target - The target of the edit operation.
  */
 function editContact(i, target) {
-  let acronym = getFirstLetters(contacts[i].name);
-  const color = contacts[i].color;
-  renderEditContactDesktopOrMobile(acronym, color, i);
+	let acronym = getFirstLetters(contacts[i].name);
+	const color = contacts[i].color;
+	renderEditContactDesktopOrMobile(acronym, color, i);
 
-  let name1 = document.getElementById(`edit-name-${target}`);
-  let mail = document.getElementById(`edit-mail-${target}`);
-  let tel = document.getElementById(`edit-tel-${target}`);
+	let name1 = document.getElementById(`edit-name-${target}`);
+	let mail = document.getElementById(`edit-mail-${target}`);
+	let tel = document.getElementById(`edit-tel-${target}`);
 
-  name1.value = contacts[i].name;
-  mail.value = contacts[i].mail;
-  tel.value = contacts[i].phone;
+	name1.value = contacts[i].name;
+	mail.value = contacts[i].mail;
+	tel.value = contacts[i].phone;
 
-  nameToCompare = contacts[i].name;
+	nameToCompare = contacts[i].name;
 }
-
 
 /**
  * Save the edited contact after making changes.
@@ -183,18 +179,17 @@ function editContact(i, target) {
  * @param {string} target - The target of the edit operation (desktop or mobile).
  */
 async function saveEditedContact(i, target) {
-  let name = document.getElementById(`edit-name-${target}`);
-  let mail = document.getElementById(`edit-mail-${target}`);
-  let tel = document.getElementById(`edit-tel-${target}`);
-  let newSavedName = firstLettersUppercase(name.value);
+	let name = document.getElementById(`edit-name-${target}`);
+	let mail = document.getElementById(`edit-mail-${target}`);
+	let tel = document.getElementById(`edit-tel-${target}`);
+	let newSavedName = firstLettersUppercase(name.value);
 
-  contacts[i].name = firstLettersUppercase(name.value);
-  contacts[i].mail = mail.value;
-  contacts[i].phone = tel.value;
+	contacts[i].name = firstLettersUppercase(name.value);
+	contacts[i].mail = mail.value;
+	contacts[i].phone = tel.value;
 
-  await finalizeEditedContactSave(newSavedName, i, target);
+	await finalizeEditedContactSave(newSavedName, i, target);
 }
-
 
 /**
  * Finalizes the saving of the edited contact by performing additional actions.
@@ -203,33 +198,31 @@ async function saveEditedContact(i, target) {
  * @param {string} target - The target of the edit operation (desktop or mobile).
  */
 async function finalizeEditedContactSave(newSavedName, i, target) {
-  await checkTasksSelectedContactNames(newSavedName);
-  await saveContact(i);
-  init();
-  await closeContactPopup(target, 'edit');
-  openContactInfo(i);
+	await checkTasksSelectedContactNames(newSavedName);
+	await saveContact(i);
+	init();
+	await closeContactPopup(target, "edit");
+	openContactInfo(i);
 }
-
 
 /**
  * Check and update the selected contact names in tasks after editing a contact name.
  * @param {string} newSavedName - The new name of the contact after editing.
  */
 async function checkTasksSelectedContactNames(newSavedName) {
-  for (let i = 0; i < tasks.length; i++) {
-    let task = tasks[i];
+	for (let i = 0; i < tasks.length; i++) {
+		let task = tasks[i];
 
-    for (let j = 0; j < task.selectedContacts.length; j++) {
-      let selectedContact = task.selectedContacts[j];
+		for (let j = 0; j < task.selectedContacts.length; j++) {
+			let selectedContact = task.selectedContacts[j];
 
-      if (selectedContact.name == nameToCompare) {
-        selectedContact.name = newSavedName;
-        await patchItemWithAuth('tasks', task.id, task);
-      }
-    }
-  }
+			if (selectedContact.name == nameToCompare) {
+				selectedContact.name = newSavedName;
+				await patchItemWithAuth("tasks", task.id, task);
+			}
+		}
+	}
 }
-
 
 /**
  * Delete a contact from the contacts array.
@@ -237,22 +230,21 @@ async function checkTasksSelectedContactNames(newSavedName) {
  * @param {number} i - The index of the contact to delete.
  */
 async function deleteContact(i, target) {
-  let contactId = contacts[i].id;
-  deleteUnusedLetter(i);
-  await deleteSelectedContact(i);
-  contacts.splice(i, 1);
+	let contactId = contacts[i].id;
+	deleteUnusedLetter(i);
+	await deleteSelectedContact(i);
+	contacts.splice(i, 1);
 
-  if (window.innerWidth < 800) {
-    closeChangesMenuMobile();
-    toggleContactInfoMobile();
-  }
+	if (window.innerWidth < 800) {
+		closeChangesMenuMobile();
+		toggleContactInfoMobile();
+	}
 
-  document.getElementById('contact-info').innerHTML = '';
-  await deleteItemWithAuth('contacts', contactId)
-  init();
-  await animateBannerContacts('banner-contact-deleted', 'banner-contact-deleted-mobile');
+	document.getElementById("contact-info").innerHTML = "";
+	await deleteItemWithAuth("contacts", contactId);
+	init();
+	await animateBannerContacts("banner-contact-deleted", "banner-contact-deleted-mobile");
 }
-
 
 /**
  * Delete the unused letter from the letters array.
@@ -260,10 +252,9 @@ async function deleteContact(i, target) {
  * @param {number} i - The index of the contact being deleted.
  */
 function deleteUnusedLetter(i) {
-  let index = letters.indexOf(contacts[i].name.charAt(0));
-  letters.splice(index, 1);
+	let index = letters.indexOf(contacts[i].name.charAt(0));
+	letters.splice(index, 1);
 }
-
 
 /**
  * Delete the selected contact from tasks when a contact is deleted.
@@ -271,21 +262,20 @@ function deleteUnusedLetter(i) {
  * @param {number} x - The index of the contact being deleted.
  */
 async function deleteSelectedContact(x) {
-  for (let i = 0; i < tasks.length; i++) {
-    let task = tasks[i];
+	for (let i = 0; i < tasks.length; i++) {
+		let task = tasks[i];
 
-    for (let j = 0; j < task.selectedContacts.length; j++) {
-      let contact = task.selectedContacts[j];
+		for (let j = 0; j < task.selectedContacts.length; j++) {
+			let contact = task.selectedContacts[j];
 
-      if (contact.name === contacts[x].name) {
-        task.selectedContacts.splice(j, 1);
-        j--;
-      }
-    }
-    await patchItemWithAuth('tasks', task.id, task);
-  }
+			if (contact.name === contacts[x].name) {
+				task.selectedContacts.splice(j, 1);
+				j--;
+			}
+		}
+		await patchItemWithAuth("tasks", task.id, task);
+	}
 }
-
 
 /**
  * Prevent the default action of closing the event.
@@ -293,9 +283,8 @@ async function deleteSelectedContact(x) {
  * @param {Event} event - The event object.
  */
 function doNotClose(event) {
-  event.stopPropagation();
+	event.stopPropagation();
 }
-
 
 /**
  * Get the first letters of each word in a string.
@@ -304,9 +293,8 @@ function doNotClose(event) {
  * @returns {string} The first letters of each word.
  */
 function getFirstLetters(str) {
-  return str.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), '');
+	return str.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), "");
 }
-
 
 /**
  * Validate a phone number input.
@@ -314,5 +302,5 @@ function getFirstLetters(str) {
  * @param {HTMLInputElement} input - The input element containing the phone number.
  */
 function validatePhoneNumber(input) {
-  input.value = input.value.replace(/[^\d+\/\s-]/g, '');
+	input.value = input.value.replace(/[^\d+\/\s-]/g, "");
 }

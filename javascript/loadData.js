@@ -199,7 +199,7 @@ async function getItemWithAuth(path) {
  * Retrieves the user object from local storage if available.
  * @returns {void}
  */
-function loadUser() {
+async function loadUser() {
 	let userAsText = localStorage.getItem("user");
 	if (userAsText) {
 		user = JSON.parse(userAsText);
