@@ -14,8 +14,16 @@ Join frontend is a modern web application designed to help users efficiently org
 -   **Add Task Menu**: A feature for creating new tasks.
 -   **Board with Categories**: A Kanban-style board with tasks organized into the categories 'To-Do', 'In Progress', 'Awaiting Feedback' and 'Done'. Tasks can be moved between categories using drag-and-drop.
 -   **Contacts List**: A list of contacts with the ability to add, edit, and delete contacts.
-
 -   **Backend**: Store and retrieve data from a backend storage.
+
+## Frontend Stack
+
+-   **HTML, CSS, JavaScript**: The foundation for the frontend.
+
+## Backend Stack
+
+-   **Python**: The foundation for the backend.
+-   **Framework**: Django.
 
 ## Installation
 
@@ -29,15 +37,6 @@ To run the project locally, follow these steps:
     ```bash
     cd join-frontend
     ```
-
-## Frontend Stack
-
--   **HTML, CSS, JavaScript**: The foundation for the frontend.
-
-## Backend Stack
-
--   **Python**: The foundation for the backend.
--   **Framework**: Django.
 
 ## Usage
 
