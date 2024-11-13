@@ -10,7 +10,12 @@ Join frontend is a modern web application designed to help users efficiently org
 -   **User-Friendly Design**: A simple and clear user interface.
 -   **Responsive Layouts**: Optimized for use on different devices.
 -   **Search and Filter Options**: Quickly find and manage tasks.
--   **Backend**: Store and retrieve data from the backend.
+    **Task Overview as Start Page**: A dashboard that greets the user, showing the number of tasks on the board and the next upcoming deadline.
+-   **Add Task Menu**: A feature for creating new tasks.
+-   **Board with Categories**: A Kanban-style board with tasks organized into the categories 'To-Do', 'In Progress', 'Awaiting Feedback' and 'Done'. Tasks can be moved between categories using drag-and-drop.
+-   **Contacts List**: A list of contacts with the ability to add, edit, and delete contacts.
+
+-   **Backend**: Store and retrieve data from a backend storage.
 
 ## Installation
 
@@ -40,7 +45,7 @@ Once started, the application can be accessed at `http://localhost:5502` or `htt
 
 ## Contact
 
-For questions or suggestions, contact [your email address] or create an issue on GitHub.
+For questions or suggestions, contact mail@christian-grund.dev or create an issue on GitHub.
 
 ---
 
