@@ -1,6 +1,5 @@
-const STORAGE_URL = "https://join-f0c08-default-rtdb.europe-west1.firebasedatabase.app/";
-const LOCALHOST_URL = "http://localhost:8001/";
-const PRODUCTION_URL = "https://join-backend.christian-grund.dev/";
+const DEVELOPMENT_URL = "http://localhost:8001/";
+const PRODUCTION_URL = "https://join-backend.christian-grund.dev";
 
 let user = [];
 let users = [];
@@ -283,7 +282,7 @@ function getToken() {
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
 function logout() {
-	fetch("http://localhost:8001/api/logout/", {
+	fetch(`${PRODUCTION_URL}/api/logout/`, {
 		method: "POST",
 		credentials: "include",
 	})
@@ -293,6 +292,15 @@ function logout() {
 			}
 		})
 		.catch((error) => console.error("Error:", error));
+	deleteAuthToken();
+}
+
+/**
+ * Deletes the user authentication token from localstorage.
+ * @function
+ */
+function deleteAuthToken() {
+	localStorage.removeItem("authToken");
 }
 
 /**
@@ -323,4 +331,13 @@ async function setColorsToSelectedContacts() {
 			await patchItemWithAuth("tasks", task.id, { selectedContacts: updatedSelectedContacts });
 		}
 	}
+}
+
+/**
+ * Prevent the default action of closing the event.
+ * Stops the propagation of the event to prevent closing.
+ * @param {Event} event - The event object.
+ */
+function doNotClose(event) {
+	event.stopPropagation();
 }

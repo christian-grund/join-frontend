@@ -278,15 +278,6 @@ async function deleteSelectedContact(x) {
 }
 
 /**
- * Prevent the default action of closing the event.
- * Stops the propagation of the event to prevent closing.
- * @param {Event} event - The event object.
- */
-function doNotClose(event) {
-	event.stopPropagation();
-}
-
-/**
  * Get the first letters of each word in a string.
  * Splits the string by spaces and returns the first letter of each word.
  * @param {string} str - The input string.

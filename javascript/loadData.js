@@ -4,23 +4,27 @@
  * @returns {Promise<void>} - A promise that resolves once the data is loaded.
  */
 async function loadData() {
-	try {
-		users = await getItemWithAuth("users");
-		if (users == null) {
-			users = [];
+	const token = localStorage.getItem("authToken");
+
+	if (token) {
+		try {
+			users = await getItemWithAuth("users");
+			if (users == null) {
+				users = [];
+			}
+		} catch (error) {
+			console.info("could not load users", error);
 		}
-	} catch (error) {
-		console.info("could not load users", error);
-	}
-	try {
-		contacts = await getItemWithAuth("contacts");
-	} catch (error) {
-		console.info("could not load contacts", error);
-	}
-	try {
-		tasks = await getItemWithAuth("tasks");
-	} catch (error) {
-		console.info("could not load tasks", error);
+		try {
+			contacts = await getItemWithAuth("contacts");
+		} catch (error) {
+			console.info("could not load contacts", error);
+		}
+		try {
+			tasks = await getItemWithAuth("tasks");
+		} catch (error) {
+			console.info("could not load tasks", error);
+		}
 	}
 }
 
@@ -31,7 +35,7 @@ async function loadData() {
  */
 async function fetchUserData() {
 	const token = localStorage.getItem("authToken");
-	const response = await fetch("http://localhost:8001/api/current_user/", {
+	const response = await fetch(`${PRODUCTION_URL}/api/current_user/`, {
 		method: "GET",
 		headers: {
 			"Authorization": `Token ${token}`,
@@ -55,7 +59,7 @@ async function fetchUserData() {
 async function setItemWithAuth(path = "", value = {}) {
 	const token = localStorage.getItem("authToken");
 
-	const response = await fetch(`http://localhost:8001/${path}/`, {
+	const response = await fetch(`${PRODUCTION_URL}/${path}/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -79,7 +83,7 @@ async function setItemWithAuth(path = "", value = {}) {
  * @returns {Promise<void>} A promise that resolves when the request completes.
  */
 async function setItemNoAuth(path = "", value = {}) {
-	const response = await fetch(`http://localhost:8001/${path}/`, {
+	const response = await fetch(`${PRODUCTION_URL}/${path}/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -101,7 +105,7 @@ async function setItemNoAuth(path = "", value = {}) {
 async function deleteItemWithAuth(path, id) {
 	const token = localStorage.getItem("authToken");
 
-	const response = await fetch(`http://localhost:8001/${path}/${id}/`, {
+	const response = await fetch(`${PRODUCTION_URL}/${path}/${id}/`, {
 		method: "DELETE",
 		headers: {
 			"Content-Type": "application/json",
@@ -126,7 +130,7 @@ async function deleteItemWithAuth(path, id) {
 async function patchItemWithAuth(path, id, data) {
 	const token = localStorage.getItem("authToken");
 
-	const response = await fetch(`http://localhost:8001/${path}/${id}/`, {
+	const response = await fetch(`${PRODUCTION_URL}/${path}/${id}/`, {
 		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
@@ -154,7 +158,7 @@ async function getItem(path = "") {
 
 async function getItemBE(path) {
 	try {
-		let response = await fetch(`http://localhost:8001/${path}/`, {});
+		let response = await fetch(`${PRODUCTION_URL}/${path}/`, {});
 		if (!response.ok) {
 			console.error("HTTP error:", response.status, response.statusText);
 			return [];
@@ -177,7 +181,7 @@ async function getItemBE(path) {
 async function getItemWithAuth(path) {
 	const token = localStorage.getItem("authToken");
 
-	const response = await fetch(`http://localhost:8001/${path}/`, {
+	const response = await fetch(`${PRODUCTION_URL}/${path}/`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

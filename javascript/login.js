@@ -85,7 +85,7 @@ async function loadUser() {
 	let email = document.getElementById("email").value;
 	let password = document.getElementById("password").value;
 
-	const response = await fetch("http://localhost:8001/api/login/", {
+	const response = await fetch(`${PRODUCTION_URL}/api/login/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -161,7 +161,7 @@ async function logInGuest() {
 }
 
 async function loadLogInGuest(email, password) {
-	let response = await fetch("http://localhost:8001/api/login/", {
+	let response = await fetch(`${PRODUCTION_URL}/api/login/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
