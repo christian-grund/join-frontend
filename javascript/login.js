@@ -81,7 +81,7 @@ function checkMatchPassword() {
  * Loads user data upon login.
  * Redirects to the summary page if login is successful.
  */
-async function loadUser() {
+async function login() {
 	let email = document.getElementById("email").value;
 	let password = document.getElementById("password").value;
 
@@ -98,7 +98,6 @@ async function loadUser() {
 		localStorage.setItem("authToken", data.token);
 		await rememberMe();
 		await setUser(email);
-		window.location.href = "./summary.html";
 	} else {
 		console.error("Login failed");
 	}
@@ -109,13 +108,19 @@ async function loadUser() {
  * @param {string} email - User's email.
  */
 async function setUser(email) {
-	for (let i = 0; i < users.length; i++) {
-		if (users[i].email === email) {
-			user = [];
-			user.push(i);
-			let userAsText = JSON.stringify(user);
-			localStorage.setItem("user", userAsText);
+	await loadData();
+	if (users.length > 0) {
+		for (let i = 0; i < users.length; i++) {
+			if (users[i].email === email) {
+				user = [];
+				user.push(i);
+				let userAsText = JSON.stringify(user);
+				localStorage.setItem("user", userAsText);
+				window.location.href = "./summary.html";
+			}
 		}
+	} else {
+		console.error("No users found!");
 	}
 }
 

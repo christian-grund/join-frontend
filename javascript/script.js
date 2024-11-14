@@ -276,15 +276,25 @@ function getToken() {
 	return authToken;
 }
 
+async function logoutAndRedirect() {
+	await logout();
+	window.location.href = "./index.html";
+}
+
 /**
  * Save the contacts array to the storage.
  * Converts the contacts array to JSON and saves it to the storage.
  * @returns {Promise<void>} A promise that resolves when the contacts are saved.
  */
-function logout() {
+async function logout() {
+	const token = localStorage.getItem("authToken"); // Holen des Tokens
+
 	fetch(`${PRODUCTION_URL}/api/logout/`, {
 		method: "POST",
 		credentials: "include",
+		headers: {
+			"Authorization": `Token ${token}`, // Header hinzufügen
+		},
 	})
 		.then((response) => {
 			if (!response.ok) {
@@ -292,6 +302,7 @@ function logout() {
 			}
 		})
 		.catch((error) => console.error("Error:", error));
+
 	deleteAuthToken();
 }
 

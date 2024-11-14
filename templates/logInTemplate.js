@@ -3,8 +3,8 @@
  * @returns {string} The HTML content for the login screen.
  */
 function logInHtml() {
-  return /*html*/ ` 
-  <form action="" id="loginScreenBody" class="loginScreenBody" onsubmit="loadUser(); return false" name="logIn">
+	return /*html*/ ` 
+  <form action="" id="loginScreenBody" class="loginScreenBody" onsubmit="login(); return false" name="logIn">
     <div class="h1Box dp-flex fd-colum">
       <h1>Log in</h1>
       <img src="./assets/img/icons/blueUnderline.svg" alt="" class="blueUnderline"/>
@@ -41,13 +41,12 @@ function logInHtml() {
   `;
 }
 
-
 /**
  * Generates HTML content for the signup form.
  * @returns {string} The HTML content for the signup form.
  */
 function signupHtml() {
-  return /*html*/ `
+	return /*html*/ `
     <form action="" id="signUpBody" class="signUpBody" onsubmit="signUp(); return false">
       <img src="./assets/img/icons/blueArrowLeft.svg" class="arrowLeftIcon" onclick="loadLogIn()">   
       <div class="h1Box dp-flex fd-colum">

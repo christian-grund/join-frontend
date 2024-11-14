@@ -2,8 +2,8 @@
  * Generates HTML content for the sidebar.
  * @returns {string} The HTML content for the sidebar.
  */
-function sideBarHtml(){
-    return `
+function sideBarHtml() {
+	return `
     <section class="main">
     <a href="./logIn.html">
       <div class="logo">
@@ -15,16 +15,15 @@ function sideBarHtml(){
       <a href="./legalNoticeOffline.html" id="legalNoticeLink" class="noteLink">Legal Notice</a>
     </section>
   </section>
-    `
+    `;
 }
-
 
 /**
  * Generates HTML content for the top bar.
  * @returns {string} The HTML content for the top bar.
  */
-function topBarHtml(){
-return `
+function topBarHtml() {
+	return `
 <section class="topbar" id="topbarSection">
         <div class="topbar-left">
           <p>Kanban Project Management Tool</p>
@@ -42,7 +41,7 @@ return `
           <a href="./help.html"><p>Help</p></a>
         </div>
         <div class="dropdown-content">
-          <a onclick="logout()" href="./logIn.html"><p>Log out</p></a>
+          <a onclick="logoutAndRedirect()"><p>Log out</p></a>
         </div>
       </div>
 
@@ -53,5 +52,5 @@ return `
         </a>
         </div>
       </section>
-`
+`;
 }
