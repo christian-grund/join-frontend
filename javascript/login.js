@@ -156,14 +156,8 @@ function resetForm() {
 async function logInGuest() {
 	let email = "guest@web.de";
 	let password = "Admin123";
-	let emailfield = document.getElementById("email");
-	let passwordfield = document.getElementById("password");
-	emailfield.value = email;
-	passwordfield.value = password;
 	await loadLogInGuest(email, password);
-	if (searchForEmail(email, password)) {
-		window.location.href = "./summary.html";
-	}
+	window.location.href = "./summary.html";
 }
 
 async function loadLogInGuest(email, password) {

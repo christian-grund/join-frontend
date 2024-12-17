@@ -33,7 +33,7 @@ function logInHtml() {
       <button class="buttonGrey buttonLogin" id="logInBtn">
         Log in
       </button>
-      <button class="buttonWhite buttonLogin" onclick="logInGuest()">
+      <button type="button" class="buttonWhite buttonLogin" onclick="logInGuest()">
         Guest Log in
       </button>
     </div>
