@@ -37,6 +37,10 @@ function logInHtml() {
         Guest Log in
       </button>
     </div>
+    <div class="loading-screen hidden" id="loadingScreen">
+      <img src="assets/img/icons/loading.svg" alt="Loading img">
+      <p>Loading...</p>
+    </div>
     </form>
   `;
 }

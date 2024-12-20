@@ -84,6 +84,7 @@ function checkMatchPassword() {
 async function login() {
 	let email = document.getElementById("email").value;
 	let password = document.getElementById("password").value;
+	showOrHideLoadingAnimation("show", "hidden");
 
 	const response = await fetch(`${PRODUCTION_URL}/api/login/`, {
 		method: "POST",
@@ -101,6 +102,7 @@ async function login() {
 	} else {
 		console.error("Login failed");
 	}
+	showOrHideLoadingAnimation("hidden", "show");
 }
 
 /**
@@ -156,10 +158,17 @@ function resetForm() {
 async function logInGuest() {
 	let email = "guest@web.de";
 	let password = "Admin123";
+	showOrHideLoadingAnimation("show", "hidden");
 	await loadLogInGuest(email, password);
 	window.location.href = "./summary.html";
+	showOrHideLoadingAnimation("hidden", "show");
 }
 
+/**
+ * Sends a login request for the guest user with provided credentials.
+ * Stores the authentication token in localStorage upon success.
+ * If the login fails, logs an error to the console.
+ */
 async function loadLogInGuest(email, password) {
 	let response = await fetch(`${PRODUCTION_URL}/api/login/`, {
 		method: "POST",
@@ -175,6 +184,14 @@ async function loadLogInGuest(email, password) {
 	} else {
 		console.error("Guest login failed");
 	}
+}
+
+/**
+ * Toggles the visibility of a loading screen by adding or removing CSS classes.
+ */
+function showOrHideLoadingAnimation(show, hidden) {
+	document.getElementById("loadingScreen").classList.remove(hidden);
+	document.getElementById("loadingScreen").classList.add(show);
 }
 
 /**
