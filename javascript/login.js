@@ -181,6 +181,8 @@ async function loadLogInGuest(email, password) {
 	if (response.ok) {
 		let data = await response.json();
 		localStorage.setItem("authToken", data.token);
+		await rememberMe();
+		await setUser("guest@web.de");
 	} else {
 		console.error("Guest login failed");
 	}
